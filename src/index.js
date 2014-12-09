@@ -1,14 +1,17 @@
-var fs = require('fs'),
-    S = require('string');
-    
-var cwd = process.cwd(),
-    files = fs.readdirSync(cwd + '/_posts/'),
-    posts = [];
+var config = require('./config'),
+    blog = require('./blog');
 
-files.forEach(function(element, index, array) {
-    if (element.match(/^([0-9]{4})-([0-9]{2})-([0-9]{2})-([a-z-]+).md$/i)) {
-        posts.push(element);
-    }
+blog.update();
+
+// on index, get a list of blog posts
+blog.getPosts();
+
+// on specific permalink, get that particular post
+blog.getPosts({
+    permalink: 'permalink'
 });
 
-console.log(posts);
+// on tag, get all tagged posts
+blog.getPosts({
+    tag: 'tag'
+});
