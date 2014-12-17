@@ -1,12 +1,12 @@
 ---
-layout: post
-title: Test November
+title: Test Post 3
+permalink: test-post-three
+author: imdsm
+date: 2015-01-01 10:00
 meta:
   - name: keywords
     content: test
   - name: description
     content: This is a test post, please ignore.
-permalink: test-november
-author: imdsm
 ---
-Test Nov
+Test Post 3

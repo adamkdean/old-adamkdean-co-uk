@@ -9,6 +9,7 @@
   "author": "Adam K Dean",
   "license": "MIT",
   "dependencies": {
+    "async": "^0.9.0",
     "string": "^2.2.0"
   }
 }

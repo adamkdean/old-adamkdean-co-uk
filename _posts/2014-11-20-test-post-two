@@ -1,0 +1,12 @@
+---
+title: Test Post 2
+permalink: test-post-two
+author: imdsm
+date: 2014-11-20 10:00
+meta:
+  - name: keywords
+    content: test
+  - name: description
+    content: This is a test post, please ignore.
+---
+Test Post 2
