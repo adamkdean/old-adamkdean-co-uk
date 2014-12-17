@@ -28,7 +28,20 @@ var readFileAsync = function(filename, callback) {
 };
 
 var parseBlogData = function(data) {
-    console.log('data', data);
+    var re = /---[\n\r]+([\s\S]*)[\n\r]+---[\n\r]+([\s\S]*)/;
+    var posts = [];
+
+    for(let i = 0; i < data.length; i++) {
+        let bits = re.exec(data[i]);
+
+        posts.push({
+            original: bits[0],
+            metadata: bits[1],
+            content: bits[2]
+        });
+    }
+
+    console.log(posts);
 };
 
 var getPosts = function(options) {
