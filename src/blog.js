@@ -12,9 +12,9 @@ var update = function() {
 var getBlogFiles = function() {
     var allFiles = fs.readdirSync(config.post_dir),
         blogFiles = [];
-    
+
     allFiles.forEach(function(element, index, array) {
-        if (element.match(/^([0-9]{4})-([0-9]{2})-([0-9]{2})-([a-z-]+).md$/i)) {
+        if (element.match(/^([0-9]{4})-([0-9]{2})-([0-9]{2})-([a-z-]+)$/i)) {
             blogFiles.push(element);
         }
     });
