@@ -4,36 +4,31 @@ var S = require('string'),
     config = require('./config');
 
 var update = function() {
-    var blogFiles = getBlogFiles();
-    var posts = parseBlogFiles(blogFiles);
+    var validFilenames = [],
+        allFilenames = fs.readdirSync(config.post_dir);
 
-    // do something here
-};
-
-var getBlogFiles = function() {
-    var allFiles = fs.readdirSync(config.post_dir),
-        blogFiles = [];
-
-    allFiles.forEach(function(element, index, array) {
+    allFilenames.forEach(function(element, index, array) {
         if (element.match(/^([0-9]{4})-([0-9]{2})-([0-9]{2})-([a-z-]+)$/i)) {
-            blogFiles.push(config.post_dir + '/' + element);
+            validFilenames.push(config.post_dir + '/' + element);
         }
     });
 
-    return blogFiles;
-}
+    async.map(validFilenames, readFileAsync, function(err, results) {
+        if (err !== undefined) {
+            console.log('Error reading blog files:', err);
+            return;
+        }
+
+        parseBlogData(results);
+    });
+};
 
 var readFileAsync = function(filename, callback) {
     fs.readFile(filename, 'utf8', callback);
 };
 
-var parseBlogFiles = function(filenames) {
-
-    async.map(filenames, readFileAsync, function(err, results) {
-        console.log('err', err);
-        console.log('results', results);
-    });
-
+var parseBlogData = function(data) {
+    console.log('data', data);
 };
 
 var getPosts = function(options) {
