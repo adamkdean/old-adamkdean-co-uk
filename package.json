@@ -4,7 +4,7 @@
   "description": "A simple blog",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node --harmony --use-strict src/index.js"
   },
   "author": "Adam K Dean",
   "license": "MIT",

@@ -1,12 +1,12 @@
-var fs = require('fs'),
-    S = require('string');
-
-var config = require('./config');
+var S = require('string'),
+    fs = require('fs'),
+    config = require('./config');
 
 var update = function() {
     var blogFiles = getBlogFiles();
     var posts = parseBlogFiles(blogFiles);
 
+    // do something here
 };
 
 var getBlogFiles = function() {
@@ -23,11 +23,16 @@ var getBlogFiles = function() {
 }
 
 var parseBlogFiles = function(filenames) {
-    console.log(filenames);
+
+    for (let i = 0; i < filenames.length; i++) {
+
+        console.log(filenames[i]);
+    }
+
 };
 
 var getPosts = function(options) {
-    console.log('getPosts: ', options);
+    //console.log('getPosts:', options);
 };
 
 module.exports = {
