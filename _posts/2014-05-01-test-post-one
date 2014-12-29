@@ -1,12 +1,11 @@
 ---
 title: Test Post 1
-permalink: test-post-one
+slug: test-post-one
 author: imdsm
 date: 2014-05-01 10:00
-meta:
-  - name: keywords
-    content: test
-  - name: description
-    content: This is a test post, please ignore.
+tags:
+  - test
+  - post
+  - apple
 ---
 Test Post 1

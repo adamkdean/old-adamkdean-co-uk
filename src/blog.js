@@ -1,10 +1,14 @@
-var S = require('string'),
+var _ = require('underscore'),
+    S = require('string'),
     fs = require('fs'),
     yaml = require('js-yaml'),
     async = require('async'),
     config = require('./config');
 
-var cachedBlogPosts = [];
+var cachedBlogPosts = {
+    all: [],
+    tags: {}
+};
 
 var updateAsync = function(callback) {
     var validFilenames = [],
@@ -22,13 +26,24 @@ var updateAsync = function(callback) {
             return;
         }
 
-        parseBlogDataAsync(readResults, function(parseResults) {
-            // do some indexing
+        console.log('updating cache with %d blog posts', readResults.length);
 
-            cachedBlogPosts = parseResults;
-            console.log('updated cache with %d blog posts', cachedBlogPosts.length);
+        parseRawDataAsync(readResults, function(posts) {
+            generateIndexesAsync(posts, function(indexes) {
 
-            callback();
+                // update the cache object with the new object
+                cachedBlogPosts = {
+                    all: posts,
+                    tagIndex: indexes.tagIndex,
+                    slugIndex: indexes.slugIndex
+                };
+
+                console.log('generated tag index with %d tags', _.size(cachedBlogPosts.tagIndex));
+                console.log('generated slug index with %d slugs', _.size(cachedBlogPosts.slugIndex));
+                console.log('updated cache with %d blog posts', cachedBlogPosts.all.length);
+
+                callback();
+            });
         });
     });
 };
@@ -37,9 +52,9 @@ var readFileAsync = function(filename, callback) {
     fs.readFile(filename, 'utf8', callback);
 };
 
-var parseBlogDataAsync = function(data, callback) {
-    var re = /---[\n\r]+([\s\S]*)[\n\r]+---[\n\r]+([\s\S]*)/;
-    var posts = [];
+var parseRawDataAsync = function(data, callback) {
+    var re = /---[\n\r]+([\s\S]*)[\n\r]+---[\n\r]+([\s\S]*)/,
+        posts = [];
 
     for(let i = 0; i < data.length; i++) {
         let bits = re.exec(data[i]),
@@ -56,10 +71,56 @@ var parseBlogDataAsync = function(data, callback) {
     callback(posts);
 };
 
-var getPosts = function(options) {
-    console.log('getPosts:', options);
+// Indexes vs Indices (http://grammarist.com/usage/indexes-indices/)
+// " It's true that indices is the plural of index in Latin, but index is an English word when
+//   English speakers use it so we can pluralize it according to the conventions of English. "
+var generateIndexesAsync = function(posts, callback) {
+    var tagIndex = {},
+        slugIndex = {};
 
-    return cachedBlogPosts;
+    for(let i = 0; i < posts.length; i++) {
+        let post = posts[i],
+            meta = post.metadata || {},
+            tags = meta.tags || [],
+            slug = meta.slug || '';
+
+        for(let j = 0; j < tags.length; j++) {
+            let tag = tags[j],
+                tagExists = tag in tagIndex,
+                postUnique = !_.contains(tagIndex[tag], post);
+
+            if (tagExists && postUnique) tagIndex[tag].push(post);
+            else if (!tagExists) tagIndex[tag] = new Array(post);
+        }
+
+        // only index this post if the slug is unique and hasn't already been used
+        if (!(slug in slugIndex)) {
+            slugIndex[slug] = post;
+        }
+    }
+
+    callback({
+        tagIndex: tagIndex,
+        slugIndex: slugIndex
+    });
+};
+
+var getPosts = function(options) {
+
+    if (options && 'tag' in options) {
+        console.log('tag');
+
+        //
+    }
+
+    if (options && 'slug' in options) {
+        console.log('slug');
+
+        //
+    }
+
+    console.log('all');
+    return cachedBlogPosts.all;
 };
 
 module.exports = exports = {

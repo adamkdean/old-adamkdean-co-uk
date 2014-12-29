@@ -5,13 +5,13 @@ blog.updateAsync(function() {
     // on index, get a list of blog posts
     blog.getPosts();
 
-    // on specific permalink, get that particular post
+    // on specific slug, get that particular post
     blog.getPosts({
-        permalink: 'permalink'
+        slug: 'test-post-one'
     });
 
     // on tag, get all tagged posts
     blog.getPosts({
-        tag: 'tag'
+        tag: 'banana'
     });
 });
