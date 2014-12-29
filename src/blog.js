@@ -27,6 +27,8 @@ var updateAsync = function(callback) {
 
             cachedBlogPosts = parseResults;
             console.log('updated cache with %d blog posts', cachedBlogPosts.length);
+
+            callback();
         });
     });
 };
