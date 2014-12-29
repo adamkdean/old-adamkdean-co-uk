@@ -106,20 +106,23 @@ var generateIndexesAsync = function(posts, callback) {
 };
 
 var getPosts = function(options) {
+    // options (object):
+    //  tag: returns all blog posts that are tagged with said tag
+    //  slug: returns single blog posts with this slug
 
     if (options && 'tag' in options) {
-        console.log('tag');
-
-        //
+        return (options.tag in cachedBlogPosts.tagIndex)
+            ? cachedBlogPosts.tagIndex[options.tag]
+            : [];
     }
 
     if (options && 'slug' in options) {
-        console.log('slug');
-
-        //
+        return (options.slug in cachedBlogPosts.slugIndex)
+            ? cachedBlogPosts.slugIndex[options.slug]
+            : {};
     }
 
-    console.log('all');
+    // default to all blog posts
     return cachedBlogPosts.all;
 };
 

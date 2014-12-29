@@ -2,16 +2,14 @@ var config = require('./config'),
     blog = require('./blog');
 
 blog.updateAsync(function() {
-    // on index, get a list of blog posts
-    blog.getPosts();
+    // blog.getPosts();
+    // blog.getPosts({
+    //     slug: 'test-post-one'
+    // });
 
-    // on specific slug, get that particular post
-    blog.getPosts({
+    var posts = blog.getPosts({
         slug: 'test-post-one'
     });
 
-    // on tag, get all tagged posts
-    blog.getPosts({
-        tag: 'banana'
-    });
+    console.log(posts);
 });
