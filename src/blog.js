@@ -10,6 +10,24 @@ var cachedBlogPosts = {
     tags: {}
 };
 
+var updateInterval = 60000, // ms
+    updateObject;
+
+var startUpdateCycle = function(interval) {
+    updateInterval = interval || updateInterval;
+    updateCycle();
+};
+
+var stopUpdateCycle = function() {
+    clearTimeout(updateObject);
+};
+
+var updateCycle = function() {
+    updateAsync(function() {
+        updateObject = setTimeout(updateCycle, updateInterval);
+    });
+};
+
 var updateAsync = function(callback) {
     var validFilenames = [],
         allFilenames = fs.readdirSync(config.POST_DIR);
@@ -127,6 +145,8 @@ var getPosts = function(options) {
 };
 
 module.exports = exports = {
+    startUpdateCycle: startUpdateCycle,
+    stopUpdateCycle: stopUpdateCycle,
     updateAsync: updateAsync,
     getPosts: getPosts
 };
