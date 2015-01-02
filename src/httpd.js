@@ -7,13 +7,10 @@ var koa = require('koa'),
 var app, router;
 
 var locals = {
-    version: '0.0.1',
-    now: function() {
-        return new Date()
-    },
-    ip: function *() {
-        return this.ip;
-    }
+    config: config,
+    version: config.VERSION,
+    title: config.SITE_NAME,
+    template: config.SITE_TEMPLATE
 };
 
 var filters = {
@@ -29,10 +26,8 @@ var init = function() {
     app.use(loggerFn);
     app.use(router.middleware());
 
-    console.log();
-
     render(app, {
-        root: path.join(__dirname, '..', config.PAGE_DIR),
+        root: path.join(__dirname, '..', config.TEMPLATE_DIR, config.SITE_TEMPLATE),
         layout: 'layout',
         viewExt: 'html',
         cache: false,
