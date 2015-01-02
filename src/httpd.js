@@ -1,8 +1,26 @@
 var koa = require('koa'),
     Router = require('koa-router'),
+    render = require('koa-ejs'),
+    path = require('path'),
     config = require('./config');
 
 var app, router;
+
+var locals = {
+    version: '0.0.1',
+    now: function() {
+        return new Date()
+    },
+    ip: function *() {
+        return this.ip;
+    }
+};
+
+var filters = {
+    format: function(time) {
+        return time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate();
+    }
+};
 
 var init = function() {
     app = koa();
@@ -10,7 +28,18 @@ var init = function() {
     app.use(responseTimeFn);
     app.use(loggerFn);
     app.use(router.middleware());
-    console.log('x');
+
+    console.log();
+
+    render(app, {
+        root: path.join(__dirname, '..', config.PAGE_DIR),
+        layout: 'layout',
+        viewExt: 'html',
+        cache: false,
+        debug: true,
+        locals: locals,
+        filters: filters
+    });
 };
 
 var start = function(port) {

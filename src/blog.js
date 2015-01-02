@@ -141,9 +141,19 @@ var getPosts = function(options) {
     return cachedBlogPosts.all;
 };
 
+var getTags = function(options) {
+    // options (object)
+    //   ? suggestion: a search term?
+    //   ? suggestion: skinny, just the keys?
+
+    return Object.keys(cachedBlogPosts.tagIndex);
+};
+
+
 module.exports = exports = {
     startUpdateCycle: startUpdateCycle,
     stopUpdateCycle: stopUpdateCycle,
     updateAsync: updateAsync,
-    getPosts: getPosts
+    getPosts: getPosts,
+    getTags: getTags
 };
