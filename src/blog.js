@@ -5,10 +5,7 @@ var _ = require('underscore'),
     async = require('async'),
     config = require('./config');
 
-var cachedBlogPosts = {
-    all: [],
-    tags: {}
-};
+var cachedBlogPosts = {};
 
 var updateInterval = 60000, // ms
     updateObject;
@@ -131,13 +128,13 @@ var getPosts = function(options) {
     if (options && 'tag' in options) {
         return (options.tag in cachedBlogPosts.tagIndex)
             ? cachedBlogPosts.tagIndex[options.tag]
-            : [];
+            : null;
     }
 
     if (options && 'slug' in options) {
         return (options.slug in cachedBlogPosts.slugIndex)
             ? cachedBlogPosts.slugIndex[options.slug]
-            : {};
+            : null;
     }
 
     // default to all blog posts
