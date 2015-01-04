@@ -44,10 +44,10 @@ body {
                     display: block;
                     text-decoration: none;
                     padding: 3px 10px 0px 10px;
-                    transition: .3s background-color, .3s color;
+                    /* transition: .3s background-color, .3s color; */
                     color: black;
 
-                    &:hover {
+                    &:hover, &.active {
                         background-color: $jazzberryJam;
                         color: white;
                     }

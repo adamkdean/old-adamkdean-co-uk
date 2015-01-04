@@ -11,9 +11,10 @@ var locals = {
     config: config,
     version: config.VERSION,
     title: config.SITE_NAME_LONG,
+    template: config.SITE_TEMPLATE,
     siteNameLong: config.SITE_NAME_LONG,
     siteNameShort: config.SITE_NAME_SHORT,
-    template: config.SITE_TEMPLATE
+    nav: config.SITE_NAV
 };
 
 var filters = {
@@ -37,6 +38,11 @@ var init = function() {
     router = new Router();
     app.use(responseTimeFn);
     app.use(loggerFn);
+    app.use(function *(next) {
+        locals.req = this.req;
+        locals.res = this.res;
+        yield next;
+    });
     app.use(router.middleware());
     app.use(serve(renderViewModel.root));
     render(app, renderViewModel);

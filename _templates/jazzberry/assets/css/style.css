@@ -510,11 +510,10 @@ body {
   display: block;
   text-decoration: none;
   padding: 3px 10px 0px 10px;
-  -webkit-transition: .3s background-color, .3s color;
-  transition: .3s background-color, .3s color;
+  /* transition: .3s background-color, .3s color; */
   color: black;
 }
-.container .header ul.nav li a:hover {
+.container .header ul.nav li a:hover, .container .header ul.nav li a.active {
   background-color: #a50b5e;
   color: white;
 }

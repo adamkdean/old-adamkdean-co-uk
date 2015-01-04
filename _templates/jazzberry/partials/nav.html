@@ -1,0 +1,15 @@
+<ul class="nav">
+    <% for(var i = 0; i < nav.length; i++) { %>
+        <li><a href="<%- nav[i].url %>" <% if(1 == 1) { %>class="active"<% } %>>
+                <%- nav[i].title %>
+        </a></li>
+    <% } %>
+</ul>
+
+<%- res %>
+
+<!-- <li><a href="/" >Index</a></li>
+<li><a href="/tags">Tags</a></li>
+<li><a href="/tag/test">Tag example</a></li>
+<li><a href="/test-post-one">Post example</a></li>
+ -->
