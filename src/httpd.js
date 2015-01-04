@@ -38,11 +38,7 @@ var init = function() {
     router = new Router();
     app.use(responseTimeFn);
     app.use(loggerFn);
-    app.use(function *(next) {
-        locals.req = this.req;
-        locals.res = this.res;
-        yield next;
-    });
+    app.use(extendLocalsFn);
     app.use(router.middleware());
     app.use(serve(renderViewModel.root));
     render(app, renderViewModel);
@@ -93,6 +89,12 @@ var loggerFn = function *(next) {
     if (config.LOGGING >= 1) {
         console.log('%s %s - %s', this.method, this.url, ms);
     }
+};
+
+var extendLocalsFn = function *(next) {
+    locals.req = this.req;
+    locals.res = this.res;
+    yield next;
 };
 
 module.exports = exports = {
