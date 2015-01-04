@@ -1,3 +1,75 @@
 /* Jazzberry template
  * layout.scss
  */
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    background: #eee;
+}
+
+.container {
+    width: 920px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background: white;
+
+    .header {
+        .brand {
+            float: left;
+        }
+
+        ul.nav {
+            float: right;
+            list-style: none;
+            text-align: center;
+            padding: 0;
+            margin: 5px 0 0 0;
+
+            li {
+                line-height: 40px;
+                height: 40px;
+                font-size: 1.1em;
+                display: inline-block;
+
+                a {
+                    float: left;
+                    display: block;
+                    text-decoration: none;
+                    padding: 3px 10px 0px 10px;
+                    transition: .3s background-color, .3s color;
+                    color: black;
+
+                    &:hover {
+                        background-color: $jazzberryJam;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+
+    .content {
+        clear: both;
+        padding-top: 10px;
+    }
+
+    .footer {
+        margin-top: 20px;
+
+        p {
+            text-align: center;
+            font-size: 70%;
+            color: #ccc;
+            padding: 0;
+            margin: 0;
+        }
+    }
+}

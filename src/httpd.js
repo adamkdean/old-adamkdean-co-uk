@@ -10,7 +10,9 @@ var app, router, renderViewModel;
 var locals = {
     config: config,
     version: config.VERSION,
-    title: config.SITE_NAME,
+    title: config.SITE_NAME_LONG,
+    siteNameLong: config.SITE_NAME_LONG,
+    siteNameShort: config.SITE_NAME_SHORT,
     template: config.SITE_TEMPLATE
 };
 

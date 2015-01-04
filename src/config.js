@@ -7,6 +7,7 @@ module.exports = {
     TEMPLATE_DIR: process.env.TEMPLATE_DIR || '_templates',
     POST_DIR: process.env.POST_DIR || '_posts',
 
-    SITE_NAME: process.env.SITE_NAME || 'Jazzberry, the fruity blog platform',
+    SITE_NAME_LONG: process.env.SITE_NAME_LONG || 'Jazzberry, the fruity blog platform',
+    SITE_NAME_SHORT: process.env.SITE_NAME_SHORT || 'Jazzberry',
     SITE_TEMPLATE: process.env.SITE_TEMPLATE || 'jazzberry'
 };
