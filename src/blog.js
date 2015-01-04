@@ -7,7 +7,7 @@ var _ = require('underscore'),
 
 var cachedBlogPosts = {};
 
-var updateInterval = 60000, // ms
+var updateInterval = config.PORT,
     updateObject;
 
 var startUpdateCycle = function(interval) {

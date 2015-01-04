@@ -41,7 +41,7 @@ var init = function() {
 };
 
 var start = function(port) {
-    port = port || config.HTTPD_PORT;
+    port = port || config.PORT;
     app.listen(port);
     console.log('listening on port %d', port);
 };
