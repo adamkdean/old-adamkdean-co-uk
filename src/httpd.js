@@ -1,10 +1,11 @@
 var koa = require('koa'),
     Router = require('koa-router'),
+    serve = require('koa-static'),
     render = require('koa-ejs'),
     path = require('path'),
     config = require('./config');
 
-var app, router;
+var app, router, renderViewModel;
 
 var locals = {
     config: config,
@@ -20,13 +21,7 @@ var filters = {
 };
 
 var init = function() {
-    app = koa();
-    router = new Router();
-    app.use(responseTimeFn);
-    app.use(loggerFn);
-    app.use(router.middleware());
-
-    render(app, {
+    renderViewModel = {
         root: path.join(__dirname, '..', config.TEMPLATE_DIR, config.SITE_TEMPLATE),
         layout: 'layout',
         viewExt: 'html',
@@ -34,7 +29,15 @@ var init = function() {
         debug: true,
         locals: locals,
         filters: filters
-    });
+    };
+
+    app = koa();
+    router = new Router();
+    app.use(responseTimeFn);
+    app.use(loggerFn);
+    app.use(router.middleware());
+    app.use(serve(renderViewModel.root));
+    render(app, renderViewModel);
 };
 
 var start = function(port) {
