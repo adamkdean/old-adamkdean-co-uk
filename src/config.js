@@ -7,13 +7,18 @@ module.exports = {
     POST_DIR: process.env.POST_DIR || '_posts',
     LOGGING: process.env.LOGGING || 2, // 0 none, 1 standard, 2 debug
 
+    EJS_OPEN_DELIMETER: '{{',
+    EJS_CLOSE_DELIMETER: '}}',
+
     /* you probably should change these */
+    SITE_URL: 'http://localhost:' + (process.env.PORT || 8000) + '/',
     SITE_NAME_LONG: 'Jazzberry, the fruity blog platform',
     SITE_NAME_SHORT: 'Jazzberry',
     SITE_TEMPLATE: 'jazzberry',
     SITE_NAV: [
         { title: 'Home', url: '/' },
-        { title: 'Tags', url: '/tags' },
-        { title: 'Test 1', url: '/tag/test' }
+        { title: 'General', url: '/tag/general' },
+        { title: 'Life', url: '/tag/life' },
+        { title: 'Work', url: '/tag/work' }
     ]
 };

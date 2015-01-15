@@ -1,0 +1,17 @@
+<div class="left">
+    {{ for(var i = 0; i < posts.tagged.length; i++) { }}
+        {{ var post = posts.tagged[i]; }}
+        {{ include partials/shortpost.html }}
+
+        {{ if(i < posts.tagged.length - 1) { }}
+            <hr>
+        {{ } else { }}
+            <p>Pages will go here.</p>
+        {{ } }}
+    {{ } }}
+</div>
+<div class="right">
+    {{ include partials/side.html }}
+</div>
+
+<div class="clearfix"></div>

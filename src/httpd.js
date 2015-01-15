@@ -1,9 +1,10 @@
 var koa = require('koa'),
     Router = require('koa-router'),
     serve = require('koa-static'),
-    render = require('koa-ejs'),
+    ejs = require('koa-ejs'),
     path = require('path'),
     url = require('url'),
+    marked = require('marked'),
     config = require('./config');
 
 var app, router, renderViewModel;
@@ -19,12 +20,17 @@ var locals = {
 };
 
 var filters = {
-    format: function(time) {
-        return time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate();
+    formatDate: function(date) {
+        return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+    },
+    formatMarkdown: function(text) {
+        console.log(text);
+        return marked(text);
     }
 };
 
 var init = function() {
+    // setup the model before it's used
     renderViewModel = {
         root: path.join(__dirname, '..', config.TEMPLATE_DIR, config.SITE_TEMPLATE),
         layout: 'layout',
@@ -32,7 +38,9 @@ var init = function() {
         cache: false,
         debug: true,
         locals: locals,
-        filters: filters
+        filters: filters,
+        open: config.EJS_OPEN_DELIMETER || '{{',
+        close: config.EJS_CLOSE_DELIMETER || '}}'
     };
 
     app = koa();
@@ -42,7 +50,7 @@ var init = function() {
     app.use(extendLocalsFn);
     app.use(router.middleware());
     app.use(serve(renderViewModel.root));
-    render(app, renderViewModel);
+    ejs(app, renderViewModel);
 };
 
 var start = function(port) {

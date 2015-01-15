@@ -10,28 +10,27 @@ httpd.start();
 // configure our routes
 httpd.get('/', function *() {
     var tags = blog.getTags(),
-        posts = blog.getPosts();
+        posts = {
+            all: blog.getPosts()
+        };
 
     yield this.render('index', {
-        tags: tags,
-        posts: posts
-    });
-});
-
-httpd.get('/tags', function *() {
-    var tags = blog.getTags();
-
-    yield this.render('tags', {
+        posts: posts,
         tags: tags
     });
 });
 
 httpd.get('/tag/:tag', function *() {
-    var posts = blog.getPosts({ tag: this.params.tag || '' });
+    var tags = blog.getTags(),
+        posts = {
+            all: blog.getPosts(),
+            tagged: blog.getPosts({ tag: this.params.tag || '' })
+        };
 
-    if (posts) {
-        yield this.render('tag', {
-            posts: posts
+    if (posts.all) {
+        yield this.render('posts', {
+            posts: posts,
+            tags: tags
         });
     } else {
         yield this.render('404', {
@@ -42,11 +41,17 @@ httpd.get('/tag/:tag', function *() {
 });
 
 httpd.get('/:slug', function *() {
-    var post = blog.getPosts({ slug: this.params.slug || '' });
+    var tags = blog.getTags(),
+        post = blog.getPosts({ slug: this.params.slug || '' }),
+        posts = {
+            all: blog.getPosts()
+        };
 
     if (post) {
         yield this.render('post', {
-            post: post
+            post: post,
+            posts: posts,
+            tags: tags
         });
     } else {
         yield this.render('404', {

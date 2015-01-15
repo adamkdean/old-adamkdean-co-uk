@@ -196,7 +196,6 @@ figure {
 */
 hr {
   -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
   box-sizing: content-box;
   height: 0;
 }
@@ -313,8 +312,6 @@ input {
 */
 input[type="checkbox"],
 input[type="radio"] {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   /* 1 */
   padding: 0;
@@ -405,6 +402,35 @@ th {
   padding: 0;
 }
 
+/**
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    contenteditable attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that are clearfixed.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.clearfix {
+  *zoom: 1;
+}
+
 /* Jazzberry template
  * fonts.scss
  */
@@ -467,14 +493,10 @@ ul.nav li a {
  * layout.scss
  */
 html {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 *, *:before, *:after {
-  -webkit-box-sizing: inherit;
-  -moz-box-sizing: inherit;
   box-sizing: inherit;
 }
 
@@ -484,8 +506,7 @@ body {
 
 .container {
   width: 920px;
-  margin: 0 auto;
-  margin-top: 20px;
+  margin: 40px auto;
   padding: 10px 15px;
   background: white;
 }
@@ -538,6 +559,35 @@ body {
 /* Jazzberry template
  * blog.scss
  */
-/* Jazzberry template
- * about.scss
- */
+.content .left {
+  float: left;
+  width: 70%;
+  padding-right: 5px;
+}
+.content .right {
+  float: right;
+  width: 30%;
+  padding-left: 5px;
+}
+.content .right .section {
+  margin-bottom: 30px;
+}
+.content .right .section h3 {
+  margin: 10px 0px;
+}
+.content .right .section .recent-posts p {
+  margin: 6px 0;
+}
+.content .right .section .tags {
+  margin: 0;
+}
+.content .right .section .tags a {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #a50b5e;
+  color: white;
+}
+.content .right .section .tags a:hover {
+  background: #8d0950;
+  text-decoration: none;
+}

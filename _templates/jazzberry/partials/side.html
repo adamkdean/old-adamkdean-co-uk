@@ -1,0 +1,17 @@
+<div class="section">
+    <h3>Recent Posts</h3>
+    <div class="recent-posts">
+        {{ for(var i = 0; i < (posts.all.length < 5 ? posts.all.length : 5); i++) { }}
+            <p>&#187; <a href="/{{- posts.all[i].metadata.slug }}">{{- posts.all[i].metadata.title }}</a></p>
+        {{ } }}
+    </div>
+</div>
+
+<div class="section">
+    <h3>Tags</h3>
+    <p class="tags">
+        {{ for(var i = 0; i < tags.length; i++) { }}
+            <a href="/tag/{{- tags[i] }}">{{- tags[i] }}</a>
+        {{ } }}
+    </p>
+</div>

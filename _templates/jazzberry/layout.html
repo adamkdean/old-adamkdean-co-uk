@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><%= title %></title>
+    <title>{{= title }}</title>
 
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
@@ -10,17 +10,17 @@
     <div class="container">
         <div class="header">
             <div class="brand">
-                <span class="site_name"><%= siteNameShort %></span>
+                <span class="site_name">{{= siteNameShort }}</span>
             </div>
-            <% include partials/nav.html %>
+            {{ include partials/nav.html }}
         </div>
 
         <div class="content">
-            <%- body %>
+            {{- body }}
         </div>
 
         <div class="footer">
-            <p>Powered by Jazzberry v<%= version %></p>
+            <p>Powered by Jazzberry v{{= version }}</p>
         </div>
     </div>
 </body>
