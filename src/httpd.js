@@ -3,6 +3,7 @@ var koa = require('koa'),
     serve = require('koa-static'),
     render = require('koa-ejs'),
     path = require('path'),
+    url = require('url'),
     config = require('./config');
 
 var app, router, renderViewModel;
@@ -94,6 +95,8 @@ var loggerFn = function *(next) {
 var extendLocalsFn = function *(next) {
     locals.req = this.req;
     locals.res = this.res;
+    locals.url = url.parse(this.req.url);
+
     yield next;
 };
 
