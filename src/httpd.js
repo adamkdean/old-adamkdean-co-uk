@@ -59,8 +59,8 @@ var start = function(port) {
     console.log('listening on port %d', port);
 };
 
-var useRoute = function(route, fn) {
-    router.use(route, fn);
+var allRoute = function(route, fn) {
+    router.all(route, fn);
 };
 
 var getRoute = function(route, fn) {
@@ -111,7 +111,7 @@ var extendLocalsFn = function *(next) {
 module.exports = exports = {
     init: init,
     start: start,
-    use: useRoute,
+    all: allRoute,
     get: getRoute,
     post: postRoute,
     update: updateRoute,
