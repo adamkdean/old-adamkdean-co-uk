@@ -1,7 +1,7 @@
 {
-  "name": "simple-blog",
+  "name": "flat-file-blog",
   "version": "1.0.0",
-  "description": "A simple blog",
+  "description": "A flat-file based blog",
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon --harmony --use-strict src/index.js"
