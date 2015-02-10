@@ -12,9 +12,9 @@ module.exports = {
 
     /* you probably should change these */
     SITE_URL: 'http://localhost:' + (process.env.PORT || 8000) + '/',
-    SITE_NAME_LONG: 'Jazzberry, the fruity blog platform',
-    SITE_NAME_SHORT: 'Jazzberry',
-    SITE_TEMPLATE: 'jazzberry',
+    SITE_NAME_LONG: 'Example, a flat-file based blog',
+    SITE_NAME_SHORT: 'Example',
+    SITE_TEMPLATE: 'example',
     SITE_NAV: [
         { title: 'Home', url: '/' },
         { title: 'General', url: '/tag/general' },

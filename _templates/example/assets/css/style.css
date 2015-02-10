@@ -1,7 +1,7 @@
-/* Jazzberry template
+/* Example template
  * style.scss
  */
-/* Jazzberry template
+/* Example template
  * normalize.scss
  */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
@@ -431,7 +431,7 @@ th {
   *zoom: 1;
 }
 
-/* Jazzberry template
+/* Example template
  * fonts.scss
  */
 @font-face {
@@ -462,7 +462,7 @@ th {
   font-weight: lighter;
   font-style: normal;
 }
-/* Jazzberry template
+/* Example template
  * typography.scss
  */
 html, body {
@@ -489,7 +489,7 @@ ul.nav li a {
   font-family: 'Bebas Neue';
 }
 
-/* Jazzberry template
+/* Example template
  * layout.scss
  */
 html {
@@ -553,10 +553,10 @@ body {
   margin: 0;
 }
 
-/* Jazzberry template
+/* Example template
  * index.scss
  */
-/* Jazzberry template
+/* Example template
  * blog.scss
  */
 .content .left {
