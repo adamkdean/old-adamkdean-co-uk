@@ -6,8 +6,8 @@ module.exports = {
     POST_DIR: process.env.POST_DIR || '_posts',
     LOGGING: process.env.LOGGING || 2, // 0 none, 1 standard, 2 debug
 
-    EJS_OPEN_DELIMETER: '{{',
-    EJS_CLOSE_DELIMETER: '}}',
+    EJS_OPEN_DELIMETER: '{%',
+    EJS_CLOSE_DELIMETER: '%}',
 
     /* you probably should change these */
     SITE_URL: 'http://localhost:' + (process.env.PORT || 8000) + '/',

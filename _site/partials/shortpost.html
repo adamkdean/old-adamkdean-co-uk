@@ -1,7 +1,7 @@
 <div class="post">
-    <h1><a href="/{{- post.metadata.slug }}">
-        {{- post.metadata.title }}
+    <h1><a href="/{%- post.metadata.slug %}">
+        {%- post.metadata.title %}
     </a></h1>
 
-    {{-: post.content | formatMarkdown }}
+    {%-: post.content | formatMarkdown %}
 </div>

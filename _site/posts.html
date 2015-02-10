@@ -1,17 +1,17 @@
 <div class="left">
-    {{ for(var i = 0; i < posts.tagged.length; i++) { }}
-        {{ var post = posts.tagged[i]; }}
-        {{ include partials/shortpost.html }}
+    {% for(var i = 0; i < posts.tagged.length; i++) { %}
+        {% var post = posts.tagged[i]; %}
+        {% include partials/shortpost.html %}
 
-        {{ if(i < posts.tagged.length - 1) { }}
+        {% if(i < posts.tagged.length - 1) { %}
             <hr>
-        {{ } else { }}
+        {% } else { %}
             <p>Pages will go here.</p>
-        {{ } }}
-    {{ } }}
+        {% } %}
+    {% } %}
 </div>
 <div class="right">
-    {{ include partials/side.html }}
+    {% include partials/side.html %}
 </div>
 
 <div class="clearfix"></div>
