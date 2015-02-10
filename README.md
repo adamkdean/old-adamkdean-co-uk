@@ -1,1 +1,1 @@
-This will be a simple blog.
+"This will be a simple blog." - Me, before starting project
