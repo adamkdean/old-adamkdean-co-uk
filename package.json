@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "main": "server/index.js",
     "scripts": {
-        "start": "nodemon --harmony --use-strict src/index.js"
+        "start": "nodemon --harmony --use-strict server/index.js"
     },
     "author": "Adam K Dean",
     "license": "MIT",
