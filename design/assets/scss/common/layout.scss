@@ -9,14 +9,19 @@ $fontFamily: Arial, sans-serif;
 $fontSize: 0.9em;
 
 $headerHeight: 100px;
-$footerHeight: 100px;
-
 $headerBackground: #fff;
-$mainBackground: #eee;
-$footerBackground: #333;
+$headerForeground: #000;
 
+$searchColor: #bbb;
+
+$mainBackground: #f3f3f2;
+
+$footerHeight: 120px;
+$footerBackground: #3d3831;
 $footerForeground: #fff;
 
+// blue: 3a9ad9
+// red: eb7260
 
 /* Layout
  */
@@ -26,6 +31,7 @@ $footerForeground: #fff;
 
 html {
     box-sizing: border-box;
+    @include font-antialiased;
 }
 
 html, body {
@@ -58,6 +64,71 @@ header {
             @include valign-middle;
         }
     }
+
+    .logo {
+        width: 48px;
+        height: 48px;
+    }
+
+    .search {
+        @include transition(width 0.5s ease-in-out);
+
+        float: right;
+        width: 35px;
+        padding: 0 5px;
+        height: 30px;
+        line-height: 30px;
+        text-align: left;
+
+        i {
+            font-size: 120%;
+            color: $searchColor;
+            cursor: pointer;
+
+            &:hover {
+                color: darken($searchColor, 5);
+            }
+        }
+
+        input {
+            display: none;
+        }
+
+        &.shrunk {
+            @include border-radius(4px);
+            @include transition(all 0.5s ease-in-out);
+            background: #fff;
+            width: 35px;
+
+            i {
+                color: #fff;
+            }
+        }
+
+        &.active {
+            @include border-radius(4px);
+            background: $searchColor;
+            width: 220px;
+
+            input {
+                @include placeholder-color(#fff);
+                @include calc(width, "100% - 30px");
+
+                background: transparent;
+                border: none;
+                outline: none;
+                height: 29px;
+                line-height: 30px;
+                font-size: 100%;
+                color: white;
+                display: inline-block;
+            }
+
+            i {
+                color: #fff;
+            }
+        }
+    }
 }
 
 main {
@@ -77,5 +148,28 @@ footer {
 
     i {
         font-size: 160%;
+    }
+
+    > div {
+        height: 100%;
+
+        > * {
+            @include valign-middle;
+        }
+    }
+
+    a, a:active, a:visited {
+        color: darken($footerForeground, 10);
+        text-decoration: none;
+
+        &:hover {
+            color: $footerForeground;
+            text-decoration: underline;
+        }
+    }
+
+    p.credits {
+        font-size: 80%;
+        line-height: 140%;
     }
 }

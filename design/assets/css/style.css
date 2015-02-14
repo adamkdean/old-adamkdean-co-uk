@@ -1862,10 +1862,6 @@ th {
  * Site:   adamkdean.co.uk
  * File:   icons.scss
  */
-.icon {
-  font-family: 'fontello';
-}
-
 .icon-at:before {
   content: '\40';
 }
@@ -2083,6 +2079,8 @@ th {
 
 html {
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
 }
 
 html, body {
@@ -2117,25 +2115,124 @@ header > div > * {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+header .logo {
+  width: 48px;
+  height: 48px;
+}
+header .search {
+  -webkit-transition: width 0.5s ease-in-out;
+  -moz-transition: width 0.5s ease-in-out;
+  -o-transition: width 0.5s ease-in-out;
+  transition: width 0.5s ease-in-out;
+  float: right;
+  width: 35px;
+  padding: 0 5px;
+  height: 30px;
+  line-height: 30px;
+  text-align: left;
+}
+header .search i {
+  font-size: 120%;
+  color: #bbbbbb;
+  cursor: pointer;
+}
+header .search i:hover {
+  color: #aeaeae;
+}
+header .search input {
+  display: none;
+}
+header .search.shrunk {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  background: #fff;
+  width: 35px;
+}
+header .search.shrunk i {
+  color: #fff;
+}
+header .search.active {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  background: #bbbbbb;
+  width: 220px;
+}
+header .search.active input {
+  width: -webkit-calc(100% - 30px);
+  width: calc(100% - 30px);
+  background: transparent;
+  border: none;
+  outline: none;
+  height: 29px;
+  line-height: 30px;
+  font-size: 100%;
+  color: white;
+  display: inline-block;
+}
+header .search.active input::-webkit-input-placeholder {
+  color: white;
+}
+header .search.active input:-moz-placeholder {
+  color: white;
+}
+header .search.active input::-moz-placeholder {
+  color: white;
+}
+header .search.active input:-ms-input-placeholder {
+  color: white;
+}
+header .search.active i {
+  color: #fff;
+}
 
 main {
   min-height: -webkit-calc(100% - 100px);
   min-height: calc(100% - 100px);
-  margin: 0px auto -100px;
-  background: #eeeeee;
+  margin: 0px auto -120px;
+  background: #f3f3f2;
 }
 
 footer, .push {
-  height: 100px;
+  height: 120px;
 }
 
 footer {
-  background: #333333;
+  background: #3d3831;
   color: white;
   padding: 20px 0;
 }
 footer i {
   font-size: 160%;
+}
+footer > div {
+  height: 100%;
+}
+footer > div > * {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+footer a, footer a:active, footer a:visited {
+  color: #e6e6e6;
+  text-decoration: none;
+}
+footer a:hover, footer a:active:hover, footer a:visited:hover {
+  color: white;
+  text-decoration: underline;
+}
+footer p.credits {
+  font-size: 80%;
+  line-height: 140%;
 }
 
 /* Author: Adam K Dean

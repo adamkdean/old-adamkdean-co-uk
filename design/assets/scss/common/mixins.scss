@@ -3,15 +3,51 @@
  * File:   mixins.scss
  */
 
+// make sure you use this on the parent
+// element which uses valign-middle
+@mixin preserve-3d {
+    -webkit-transform-style: preserve-3d;
+       -moz-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+}
+
+// make sure to apply preserve-3d to
+// the parent element that uses this
 @mixin valign-middle {
     position: relative;
     top: 50%;
     -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
 }
 
 @mixin calc($property, $expression) {
-    #{$property}: -webkit-calc(#{$expression}); 
+    #{$property}: -webkit-calc(#{$expression});
     #{$property}: calc(#{$expression});
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin font-antialiased {
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+}
+
+@mixin placeholder-color($color) {
+    &::-webkit-input-placeholder { color: $color; }
+    &:-moz-placeholder { color: $color; }
+    &::-moz-placeholder { color: $color; }
+    &:-ms-input-placeholder { color: $color; }
+}
+
+@mixin transition($sec) {
+	-webkit-transition: $sec;
+	   -moz-transition: $sec;
+	     -o-transition: $sec;
+            transition: $sec;
 }
