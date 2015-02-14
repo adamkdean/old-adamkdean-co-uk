@@ -1,0 +1,17 @@
+/* Author: Adam K Dean
+ * Site:   adamkdean.co.uk
+ * File:   mixins.scss
+ */
+
+@mixin valign-middle {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+@mixin calc($property, $expression) {
+    #{$property}: -webkit-calc(#{$expression}); 
+    #{$property}: calc(#{$expression});
+}

@@ -1,0 +1,81 @@
+/* Author: Adam K Dean
+ * Site:   adamkdean.co.uk
+ * File:   layout.scss
+ */
+
+/* Variables
+ */
+$fontFamily: Arial, sans-serif;
+$fontSize: 0.9em;
+
+$headerHeight: 100px;
+$footerHeight: 100px;
+
+$headerBackground: #fff;
+$mainBackground: #eee;
+$footerBackground: #333;
+
+$footerForeground: #fff;
+
+
+/* Layout
+ */
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: $fontFamily;
+    font-size: $fontSize;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: $headerBackground;
+    width: 100%;
+    height: $headerHeight;
+    padding: 20px;
+
+    h1 {
+        font-family: 'Bebas Neue Bold';
+        font-size: 240%;
+        margin: 0;
+    }
+
+    > div {
+        height: 100%;
+
+        > * {
+            @include valign-middle;
+        }
+    }
+}
+
+main {
+    @include calc(min-height, "100% - #{$headerHeight}");
+    margin: 0px auto (-$footerHeight);
+    background: $mainBackground;
+}
+
+footer, .push {
+    height: $footerHeight;
+}
+
+footer {
+    background: $footerBackground;
+    color: $footerForeground;
+    padding: 20px 0;
+
+    i {
+        font-size: 160%;
+    }
+}

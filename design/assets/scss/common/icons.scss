@@ -1,0 +1,62 @@
+/* Author: Adam K Dean
+ * Site:   adamkdean.co.uk
+ * File:   icons.scss
+ */
+
+.icon { font-family: 'fontello'; }
+.icon-at:before { content: '\40'; } /* '@' */
+.icon-css3:before { content: '\43'; } /* 'C' */
+.icon-fork:before { content: '\46'; } /* 'F' */
+.icon-github:before { content: '\47'; } /* 'G' */
+.icon-smile:before { content: '\48'; } /* 'H' */
+.icon-meh:before { content: '\4d'; } /* 'M' */
+.icon-share:before { content: '\53'; } /* 'S' */
+.icon-apple:before { content: '\61'; } /* 'a' */
+.icon-bitbucket:before { content: '\62'; } /* 'b' */
+.icon-copyright:before { content: '\63'; } /* 'c' */
+.icon-git:before { content: '\67'; } /* 'g' */
+.icon-html5:before { content: '\68'; } /* 'h' */
+.icon-instagramm:before { content: '\69'; } /* 'i' */
+.icon-linkedin:before { content: '\6c'; } /* 'l' */
+.icon-search:before { content: '\6d'; } /* 'm' */
+.icon-pi:before { content: '\70'; } /* 'p' */
+.icon-stackoverflow:before { content: '\73'; } /* 's' */
+.icon-twitter:before { content: '\74'; } /* 't' */
+.icon-frown:before { content: '\75'; } /* 'u' */
+.icon-stackexchange:before { content: '\78'; } /* 'x' */
+.icon-hacker-news:before { content: '\e80b'; } /* '' */
+.icon-chart-area:before { content: '\e814'; } /* '' */
+.icon-chart-pie:before { content: '\e815'; } /* '' */
+.icon-chart-line:before { content: '\e816'; } /* '' */
+.icon-chart-bar:before { content: '\e817'; } /* '' */
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
