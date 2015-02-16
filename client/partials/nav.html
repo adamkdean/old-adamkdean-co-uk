@@ -1,7 +1,0 @@
-<ul class="nav">
-    {% for(var i = 0; i < nav.length; i++) { %}
-    <li>
-        <a href="{%- nav[i].url %}" {% if(url.pathname == nav[i].url) { %}class="active"{% } %}>{%- nav[i].title %}</a>
-    </li>
-    {% } %}
-</ul>

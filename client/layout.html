@@ -1,27 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>{%= title %}</title>
+    <meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="initial-scale=1,minimum-scale=1,width=device-width">
 
-    <link rel="stylesheet" href="/assets/css/style.css">
+	<meta name="title" content="">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+
+	<title>{%= title %}</title>
+
+	<link rel="stylesheet" href="assets/css/style.css" type="text/css" media="screen">
+
+	<script type="text/javascript" src="assets/js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="assets/js/retina.min.js"></script>
+	<script type="text/javascript" src="assets/js/search.js"></script>
+
+	<!--[if lt IE 9]>
+		<script type="text/javascript" src="assets/js/html5shiv.js"></script>
+		<script type="text/javascript" src="assets/js/selectivizr.js"></script>
+		<script type="text/javascript" src="assets/js/respond.js"></script>
+	<![endif]-->
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="brand">
-                <span class="site_name">{%= siteNameShort %}</span>
-            </div>
-            {% include partials/nav.html %}
-        </div>
+    <header>
+    	<div class="grid-container">
+    		<div class="grid-33 left">
+    			<img src="assets/img/logo.png" alt="Adam K Dean" class="logo">
+    		</div>
+    		<h1 class="grid-33 center">
+    			ADAMKDEAN
+    		</h1>
+    		<div class="grid-33 right">
+    			<div class="search">
+    				<i class="icon-search"></i>
+    				<input type="text" placeholder="Search adamkdean.co.uk">
+    			</div>
+    		</div>
+    	</div>
+    </header>
 
-        <div class="content">
-            {%- body %}
+    <main>
+        <div class="grid-container">
+    	    {%- body %}
         </div>
+    </main>
 
-        <div class="footer">
-            footer goes here
-        </div>
-    </div>
+    <footer>
+    	<div class="grid-container">
+    		<div class="grid-50 left">
+    			<p class="credits">
+    				Crafted with love by <a href="#">Adam K Dean</a>.<br>
+    				&copy; 2015, of course.
+    			</p>
+    		</div>
+    		<div class="grid-50 right">
+    			<p class="icons">
+    				<a href="#"><i class="icon-at"></i></a>
+    				<a href="#"><i class="icon-twitter"></i></a>
+    				<a href="#"><i class="icon-github"></i></a>
+    				<a href="#"><i class="icon-bitbucket"></i></a>
+    				<a href="#"><i class="icon-stackoverflow"></i></a>
+    				<a href="#"><i class="icon-linkedin"></i></a>
+    			</p>
+    		</div>
+    	</div>
+    </footer>
 </body>
 </html>

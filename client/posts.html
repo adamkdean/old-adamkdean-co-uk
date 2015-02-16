@@ -1,4 +1,4 @@
-<div class="left">
+<div class="grid-66">
     {% for(var i = 0; i < posts.tagged.length; i++) { %}
         {% var post = posts.tagged[i]; %}
         {% include partials/shortpost.html %}
@@ -10,8 +10,6 @@
         {% } %}
     {% } %}
 </div>
-<div class="right">
+<div class="grid-33">
     {% include partials/side.html %}
 </div>
-
-<div class="clearfix"></div>
