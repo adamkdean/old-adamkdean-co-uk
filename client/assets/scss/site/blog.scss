@@ -1,46 +1,23 @@
-/* Example template
- * blog.scss
+/* Author: Adam K Dean
+ * Site:   adamkdean.co.uk
+ * File:   blog.scss
  */
 
-.content {
-    .left {
-        float: left;
-        width: 70%;
-        padding-right: 5px;
+article {
+    @include border-radius(4px);
+    background: white;
+    padding: 6px 20px;
+    margin: 15px 0;
+
+    h3 {
+        font-size: 180%;
+        margin: 25px 0 15px 0;
+        padding: 0;
     }
-    .right {
-        float: right;
-        width: 30%;
-        padding-left: 5px;
 
-        .section {
-            margin-bottom: 30px;
-
-            h3 {
-                margin: 10px 0px;
-            }
-
-            .recent-posts {
-                p {
-                    margin: 6px 0;
-                }
-            }
-
-            .tags {
-                margin: 0;
-
-                a {
-                    display: inline-block;
-                    padding: 4px 10px;
-                    background: $jazzberryJam;
-                    color: white;
-
-                    &:hover {
-                        background: darken($jazzberryJam, 5);
-                        text-decoration: none;
-                    }
-                }
-            }
-        }
+    h6 {
+        font-size: 90%;
+        margin: 0;
     }
+
 }

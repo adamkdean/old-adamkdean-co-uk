@@ -1,11 +1,15 @@
-/* Example template
- * style.scss
+/* Author: Adam K Dean
+ * Site:   adamkdean.co.uk
+ * File:   style.scss
  */
 
 @import 'common/normalize';
-@import 'common/hacks';
+@import 'common/grid';
 @import 'common/fonts';
-@import 'common/typography';
+@import 'common/icons';
+@import 'common/hacks';
+@import 'common/helpers';
+@import 'common/mixins';
 @import 'common/layout';
 
 @import 'site/index';

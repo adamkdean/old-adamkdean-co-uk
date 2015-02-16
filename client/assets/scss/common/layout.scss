@@ -1,74 +1,181 @@
-/* Example template
- * layout.scss
+/* Author: Adam K Dean
+ * Site:   adamkdean.co.uk
+ * File:   layout.scss
  */
 
-html {
-    box-sizing: border-box;
-}
+/* Variables
+ */
+$fontFamily: Arial, sans-serif;
+$fontSize: 0.9em;
 
+$headerHeight: 100px;
+$headerBackground: #fff;
+$headerForeground: #000;
+$headerBorderWidth: 4px;
+
+$mainBackground: #f3f3f2;
+
+$searchColor: darken($mainBackground, 15);
+
+$footerHeight: 110px;
+$footerBackground: #3d3831;
+$footerForeground: #fff;
+$footerBorderWidth: 10px;
+
+// blue: 3a9ad9
+// red: eb7260
+
+/* Layout
+ */
 *, *:before, *:after {
     box-sizing: inherit;
 }
 
-body {
-    background: #eee;
+html {
+    box-sizing: border-box;
+    @include font-antialiased;
 }
 
-.container {
-    width: 920px;
-    margin: 40px auto;
-    padding: 10px 15px;
-    background: white;
+html, body {
+    height: 100%;
+}
 
-    .header {
-        .brand {
-            float: left;
+body {
+    font-family: $fontFamily;
+    font-size: $fontSize;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    border-top: $headerBorderWidth solid white;
+    border-bottom: $headerBorderWidth solid darken($mainBackground, 5);
+    background: $headerBackground;
+    width: 100%;
+    height: $headerHeight;
+    padding: 20px;
+
+    h1 {
+        font-family: 'Bebas Neue Bold';
+        font-size: 240%;
+        margin: 0;
+    }
+
+    > div {
+        height: 100%;
+
+        > * {
+            @include valign-middle;
+        }
+    }
+
+    .logo {
+        width: 48px;
+        height: 48px;
+    }
+
+    .search {
+        @include transition(width 0.5s ease-in-out);
+
+        float: right;
+        width: 35px;
+        padding: 0 5px;
+        height: 30px;
+        line-height: 30px;
+        text-align: left;
+
+        i {
+            font-size: 120%;
+            color: $searchColor;
+            cursor: pointer;
+
+            &:hover {
+                color: darken($searchColor, 5);
+            }
         }
 
-        ul.nav {
-            float: right;
-            list-style: none;
-            text-align: center;
-            padding: 0;
-            margin: 5px 0 0 0;
+        input {
+            display: none;
+        }
 
-            li {
-                line-height: 40px;
-                height: 40px;
-                font-size: 1.1em;
+        &.shrunk {
+            @include border-radius(4px);
+            @include transition(all 0.5s ease-in-out);
+            background: #fff;
+            width: 35px;
+
+            i {
+                color: #fff;
+            }
+        }
+
+        &.active {
+            @include border-radius(4px);
+            background: $searchColor;
+            width: 220px;
+
+            input {
+                @include placeholder-color(#fff);
+                @include calc(width, "100% - 30px");
+
+                background: transparent;
+                border: none;
+                outline: none;
+                height: 29px;
+                line-height: 30px;
+                font-size: 100%;
+                color: white;
                 display: inline-block;
+            }
 
-                a {
-                    float: left;
-                    display: block;
-                    text-decoration: none;
-                    padding: 3px 10px 0px 10px;
-                    /* transition: .3s background-color, .3s color; */
-                    color: black;
-
-                    &:hover, &.active {
-                        background-color: $jazzberryJam;
-                        color: white;
-                    }
-                }
+            i {
+                color: #fff;
             }
         }
     }
+}
 
-    .content {
-        clear: both;
-        padding-top: 10px;
+main {
+    @include calc(min-height, "100% - #{$headerHeight}");
+    margin: 0px auto (-$footerHeight);
+    background: $mainBackground;
+    padding: 10px 0;
+}
+
+footer, .push {
+    height: $footerHeight;
+}
+
+footer {
+    border-top: $footerBorderWidth solid lighten($footerBackground, 5);
+    background: $footerBackground;
+    color: $footerForeground;
+    padding: 20px 0;
+
+    i {
+        font-size: 160%;
     }
 
-    .footer {
-        margin-top: 20px;
+    > div {
+        height: 100%;
 
-        p {
-            text-align: center;
-            font-size: 70%;
-            color: #ccc;
-            padding: 0;
-            margin: 0;
+        > * {
+            @include valign-middle;
         }
+    }
+
+    a, a:active, a:visited {
+        color: darken($footerForeground, 10);
+        text-decoration: none;
+
+        &:hover {
+            color: $footerForeground;
+            text-decoration: underline;
+        }
+    }
+
+    p.credits {
+        font-size: 80%;
+        line-height: 140%;
     }
 }

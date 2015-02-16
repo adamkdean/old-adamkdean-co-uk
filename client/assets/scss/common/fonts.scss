@@ -1,5 +1,6 @@
-/* Example template
- * fonts.scss
+/* Author: Adam K Dean
+ * Site:   adamkdean.co.uk
+ * File:   fonts.scss
  */
 
 @font-face {
@@ -45,3 +46,24 @@
     font-weight: lighter;
     font-style: normal;
 }
+
+@font-face {
+  font-family: 'fontello';
+  src: url('../fonts/fontello.eot?19802570');
+  src: url('../fonts/fontello.eot?19802570#iefix') format('embedded-opentype'),
+       url('../fonts/fontello.woff?19802570') format('woff'),
+       url('../fonts/fontello.ttf?19802570') format('truetype'),
+       url('../fonts/fontello.svg?19802570#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('../fonts/fontello.svg?19802570#fontello') format('svg');
+  }
+}
+*/
