@@ -11,14 +11,16 @@ $fontSize: 0.9em;
 $headerHeight: 100px;
 $headerBackground: #fff;
 $headerForeground: #000;
-
-$searchColor: #bbb;
+$headerBorderWidth: 4px;
 
 $mainBackground: #f3f3f2;
 
-$footerHeight: 120px;
+$searchColor: darken($mainBackground, 15);
+
+$footerHeight: 110px;
 $footerBackground: #3d3831;
 $footerForeground: #fff;
+$footerBorderWidth: 10px;
 
 // blue: 3a9ad9
 // red: eb7260
@@ -46,6 +48,8 @@ body {
 }
 
 header {
+    border-top: $headerBorderWidth solid white;
+    border-bottom: $headerBorderWidth solid darken($mainBackground, 5);
     background: $headerBackground;
     width: 100%;
     height: $headerHeight;
@@ -135,6 +139,7 @@ main {
     @include calc(min-height, "100% - #{$headerHeight}");
     margin: 0px auto (-$footerHeight);
     background: $mainBackground;
+    padding: 10px 0;
 }
 
 footer, .push {
@@ -142,6 +147,7 @@ footer, .push {
 }
 
 footer {
+    border-top: $footerBorderWidth solid lighten($footerBackground, 5);
     background: $footerBackground;
     color: $footerForeground;
     padding: 20px 0;

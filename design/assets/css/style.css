@@ -2095,6 +2095,8 @@ body {
 }
 
 header {
+  border-top: 4px solid white;
+  border-bottom: 4px solid #e7e7e5;
   background: white;
   width: 100%;
   height: 100px;
@@ -2133,11 +2135,11 @@ header .search {
 }
 header .search i {
   font-size: 120%;
-  color: #bbbbbb;
+  color: #cececa;
   cursor: pointer;
 }
 header .search i:hover {
-  color: #aeaeae;
+  color: #c2c2bd;
 }
 header .search input {
   display: none;
@@ -2162,7 +2164,7 @@ header .search.active {
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   border-radius: 4px;
-  background: #bbbbbb;
+  background: #cececa;
   width: 220px;
 }
 header .search.active input {
@@ -2196,15 +2198,17 @@ header .search.active i {
 main {
   min-height: -webkit-calc(100% - 100px);
   min-height: calc(100% - 100px);
-  margin: 0px auto -120px;
+  margin: 0px auto -110px;
   background: #f3f3f2;
+  padding: 10px 0;
 }
 
 footer, .push {
-  height: 120px;
+  height: 110px;
 }
 
 footer {
+  border-top: 10px solid #4b453c;
   background: #3d3831;
   color: white;
   padding: 20px 0;
@@ -2243,3 +2247,21 @@ footer p.credits {
  * Site:   adamkdean.co.uk
  * File:   blog.scss
  */
+article {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  background: white;
+  padding: 6px 20px;
+  margin: 15px 0;
+}
+article h3 {
+  font-size: 180%;
+  margin: 25px 0 15px 0;
+  padding: 0;
+}
+article h6 {
+  font-size: 90%;
+  margin: 0;
+}
