@@ -1,0 +1,56 @@
+/* Author: Adam K Dean
+ * Site:   adamkdean.co.uk
+ * File:   variables.scss
+ */
+
+/* Colours
+ */
+$colorFooterDark: #3d3831;
+$colorFooterLight: lighten($colorFooterDark, 5);
+$colorOffwhiteGrey: #f3f3f2;
+$colorOffwhiteGreyDark: darken($colorOffwhiteGrey, 5);
+$colorOffwhiteGreyDarker: darken($colorOffwhiteGrey, 15);
+$colorOffblack: #333333;
+$colorPastelBlue: #3a9ad9;
+$colorPastelBlueDarker: darken($colorPastelBlue, 5);
+$colorPastelRed: #eb7260;
+
+/* Typography
+ */
+$baseFontFamily: Arial, sans-serif;
+$baseFontSize: 15px;
+$baseLineHeight: 1.46em;
+$baseLetterSpacing: 0em;
+
+/* Common
+ */
+$borderRadius: 4px;
+$borderRadiusSmall: 2px;
+
+/* Header
+ */
+$headerHeight: 100px;
+$headerBackground: #fff;
+$headerForeground: #000;
+$headerBorderWidth: 4px;
+$headerBorderColor: $colorOffwhiteGreyDark;
+$searchColor: $colorOffwhiteGreyDarker;
+
+/* Main
+ */
+$mainBackground: $colorOffwhiteGrey;
+
+/* Footer
+ */
+$footerHeight: 110px;
+$footerBackground: $colorFooterDark;
+$footerForeground: #fff;
+$footerBorderWidth: 10px;
+$footerBorderColor: $colorFooterLight;
+
+/* Blog
+ */
+$articleBorderWidth: 3px;
+$articleBorderColor: $colorOffwhiteGreyDark;
+$asideBorderWidth: 3px;
+$asideBorderColor: $colorOffwhiteGreyDark;

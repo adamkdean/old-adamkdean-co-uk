@@ -9,14 +9,5 @@ module.exports = {
     EJS_OPEN_DELIMETER: '{%',
     EJS_CLOSE_DELIMETER: '%}',
 
-    /* you probably should change these */
-    SITE_URL: 'http://localhost:' + (process.env.PORT || 8000) + '/',
-    SITE_NAME_LONG: 'Adam K Dean - Personal Website',
-    SITE_NAME_SHORT: 'Adam K Dean',
-    SITE_NAV: [
-        { title: 'Home', url: '/' },
-        { title: 'General', url: '/tag/general' },
-        { title: 'Life', url: '/tag/life' },
-        { title: 'Work', url: '/tag/work' }
-    ]
+    SITE_NAME: 'Adam K Dean'
 };

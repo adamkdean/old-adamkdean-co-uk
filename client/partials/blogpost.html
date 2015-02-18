@@ -1,0 +1,34 @@
+<article>
+    <h2><a href="/{%- post.metadata.slug %}">{%- post.metadata.title %}</a></h2>
+    <p class="date">
+        Published {%-: post.metadata.date | formatDateString %}
+    </p>
+
+    <section>
+        {%-: post.content | formatMarkdown %}
+    </section>
+
+    <p class="metadata">
+        {% if (!fullpost) { %}
+        <a href="#todo">No comments</a> |
+        {% } %}
+
+        <span class="tags">
+            Tags:
+            {% if (post.metadata.tags) { %}
+                {% for(var i = 0; i < post.metadata.tags.length; i++) { %}
+                    {% var tag = post.metadata.tags[i] %}
+                    <a class="tag" href="/tag/{%= tag %}">{%= tag %}</a>
+                {% } %}
+            {% } else { %}
+                <span class="no-tags">No tags</span>
+            {% } %}
+        </span>
+    </p>
+
+    {% if (fullpost) { %}
+    <p class="comments">
+        Comments go here
+    </p>
+    {% } %}
+</article>

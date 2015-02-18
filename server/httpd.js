@@ -4,27 +4,22 @@ var koa = require('koa'),
     ejs = require('koa-ejs'),
     path = require('path'),
     url = require('url'),
+    moment = require('moment'),
     marked = require('marked'),
     config = require('./config');
 
-var app, router, renderViewModel;
+var app, router, renderViewModel, markedRenderer;
 
 var locals = {
-    config: config,
-    version: config.VERSION,
-    title: config.SITE_NAME_LONG,
-    siteNameLong: config.SITE_NAME_LONG,
-    siteNameShort: config.SITE_NAME_SHORT,
-    nav: config.SITE_NAV
+    config: config
 };
 
 var filters = {
-    formatDate: function(date) {
-        return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+    formatDateString: function(dateString) {
+        return moment(dateString).format('dddd, D MMMM YYYY');
     },
     formatMarkdown: function(text) {
-        console.log(text);
-        return marked(text);
+        return marked(text, { renderer: markedRenderer });
     }
 };
 
@@ -50,6 +45,19 @@ var init = function() {
     app.use(router.middleware());
     app.use(serve(renderViewModel.root));
     ejs(app, renderViewModel);
+
+    markedRenderer = new marked.Renderer();
+    markedRenderer.heading = function (text, level) {
+        // the idea here is that we don't want to be throwing out
+        // h1's like it's a street carnival, so we knock them all
+        // down a couple o' pegs, so offset of 3 means h4 and down
+        // also, stop at h6 because h7 isn't real, ok?
+        var headerLevelOffset = 2,
+            headerLevel = (headerLevelOffset + level < 7) ? headerLevelOffset + level : 6,
+            tagOpen = '<h' + headerLevel + '>',
+            tagClose = '</h' + headerLevel + '>';
+        return tagOpen + text + tagClose;
+    };
 };
 
 var start = function(port) {

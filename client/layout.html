@@ -10,7 +10,7 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 
-	<title>{%= title %}</title>
+	<title>{%= locals.title ? locals.title + ' - ' : '' %}{%= config.SITE_NAME %}</title>
 
 	<link rel="stylesheet" href="assets/css/style.css" type="text/css" media="screen">
 
@@ -46,6 +46,7 @@
         <div class="grid-container">
     	    {%- body %}
         </div>
+        <div class="push"></div>
     </main>
 
     <footer>

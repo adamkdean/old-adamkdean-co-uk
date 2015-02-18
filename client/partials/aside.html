@@ -1,0 +1,17 @@
+<aside>
+    <h4>Recent Posts</h4>
+    <ul class="recent-posts">
+        {% for(var i = 0; i < (posts.length < 5 ? posts.length : 5); i++) { %}
+            <li>&#187; <a href="/{%- posts[i].metadata.slug %}">{%- posts[i].metadata.title %}</a></li>
+        {% } %}
+    </ul>
+</aside>
+
+<aside>
+    <h4>Tags</h4>
+    <p class="tags">
+        {% for(var i = 0; i < tags.length; i++) { %}
+            <a class="tag" href="/tag/{%= tags[i] %}">{%= tags[i] %}</a>
+        {% } %}
+    </p>
+</aside>

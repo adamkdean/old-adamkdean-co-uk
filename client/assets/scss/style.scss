@@ -3,14 +3,17 @@
  * File:   style.scss
  */
 
-@import 'common/normalize';
-@import 'common/grid';
+@import 'vendor/normalize';
+@import 'vendor/grid';
+
+@import 'common/variables';
 @import 'common/fonts';
 @import 'common/icons';
 @import 'common/hacks';
 @import 'common/helpers';
 @import 'common/mixins';
 @import 'common/layout';
+@import 'common/typography';
 
 @import 'site/index';
 @import 'site/blog';

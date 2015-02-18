@@ -1,0 +1,70 @@
+/* Author: Adam K Dean
+ * Site:   adamkdean.co.uk
+ * File:   typography.scss
+ */
+
+ html {
+     @include font-antialiased;
+ }
+
+ body {
+     font-family: $baseFontFamily;
+     font-size: $baseFontSize;
+     line-height: $baseLineHeight;
+     letter-spacing: $baseLetterSpacing;
+ }
+
+a {
+    color: $colorOffblack;
+    text-decoration: none;
+
+    &:hover {
+        color: $colorPastelBlue;
+    }
+}
+
+p {
+    padding: .5em 0;
+    margin: 0;
+}
+
+h1 {
+    font-family: 'Bebas Neue Bold';
+    font-size: 2.7em;
+    margin: 0;
+}
+
+h2 {
+    font-size: 1.9em;
+    line-height: 1.1em;
+    padding: .5em 0;
+    margin: 0;
+}
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.3em;
+    padding: 1.25em 0 .5em;
+    margin: 0;
+}
+
+h4 {
+    font-size: 1.3em;
+    line-height: 1.1em;
+    padding: 1.25em 0 .5em;
+    margin: 0;
+}
+
+h5 {
+    font-size: 1.2em;
+    line-height: 1.1em;
+    padding: 1.25em 0 .5em;
+    margin: 0;
+}
+
+h6 {
+    font-size: 1.1em;
+    line-height: 1em;
+    padding: 1.25em 0 .5em;
+    margin: 0;
+}
