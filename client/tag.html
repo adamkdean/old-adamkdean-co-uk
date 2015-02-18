@@ -1,8 +1,8 @@
 <div class="grid-66">
-    {% if (locals.posts) { %}
+    {% if (locals.taggedPosts) { %}
         {% var fullpost = false; %}
-        {% for(var i = 0; i < posts.length; i++) { %}
-            {% var post = posts[i]; %}
+        {% for(var i = 0; i < taggedPosts.length; i++) { %}
+            {% var post = taggedPosts[i]; %}
             {% include partials/blogpost.html %}
         {% } %}
     {% } else { %}

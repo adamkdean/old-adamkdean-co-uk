@@ -11,34 +11,53 @@ console.log('**** start ****');
 
 // configure our routes
 httpd.get('/', function *() {
-    var tags = blog.getTags();
-    var posts = blog.getPosts();
+    var tags = blog.getTags(),
+        posts = blog.getPosts();
 
     yield this.render('index', {
-        posts: posts,
-        tags: tags
+        tags: tags,
+        posts: posts
     });
 });
 
-// httpd.get('/tag/:tag', function *() {
-//     var tags = blog.getTags(),
-//         posts = {
-//             all: blog.getPosts(),
-//             tagged: blog.getPosts({ tag: this.params.tag || '' })
-//         };
-//
-//     if (posts.all) {
-//         yield this.render('posts', {
-//             posts: posts,
-//             tags: tags
-//         });
-//     } else {
-//         yield this.render('404', {
-//             type: 'tag',
-//             resource: this.params.tag || ''
-//         });
-//     }
-// });
+httpd.get('/tag/:tag', function *() {
+    var tags = blog.getTags(),
+        posts = blog.getPosts(),
+        taggedPosts = blog.getPosts({ tag: this.params.tag || '' });
+
+    if (taggedPosts) {
+        yield this.render('tag', {
+            tags: tags,
+            posts: posts,
+            taggedPosts: taggedPosts
+        });
+    } else {
+        yield this.render('404', {
+            type: 'tag',
+            resource: this.params.tag || ''
+        });
+    }
+});
+
+httpd.get('/:slug', function *() {
+    var tags = blog.getTags(),
+        posts = blog.getPosts(),
+        post = blog.getPosts({ slug: this.params.slug || '' });
+
+    if (post) {
+        yield this.render('slug', {
+            tags: tags,
+            posts: posts,
+            post: post
+        });
+    } else {
+        yield this.render('404', {
+            type: 'slug',
+            resource: this.params.slug || ''
+        });
+    }
+});
+
 //
 // httpd.get('/:slug', function *() {
 //     var tags = blog.getTags(),

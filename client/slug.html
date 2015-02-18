@@ -1,0 +1,9 @@
+<div class="grid-66">
+    {% if (locals.post) { %}
+        {% var fullpost = true; %}
+        {% include partials/blogpost.html %}
+    {% } %}
+</div>
+<div class="grid-33">
+    {% include partials/aside.html %}
+</div>
