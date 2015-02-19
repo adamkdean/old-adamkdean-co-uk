@@ -1,4 +1,4 @@
----title: Happy Birthday: programmer style.slug: happy-birthday-programmer-styledate: 2013-03-13 13:49tags:  - random - c---Today I decided to wish my good friend [@Farkie](https://twitter.com/Farkie) happy birthday: programmer style.
+---title: Happy Birthday - programmer style.slug: happy-birthday-programmer-styledate: 2013-03-13 13:49tags: - random - c---Today I decided to wish my good friend [@Farkie](https://twitter.com/Farkie) happy birthday: programmer style.
 
 Here's to you, ol' bean.
 

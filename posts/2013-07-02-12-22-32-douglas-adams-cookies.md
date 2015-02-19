@@ -1,4 +1,4 @@
----title: Douglas Adams: "Cookies"slug: douglas-adams-cookiesdate: 2013-07-02 12:22tags:  - cookies - off-topic---This post is off-topic, but I just read something amazing and it has made me smile more than anything so far this week. I'd like to share it with any internetters who happen by.
+---title: Douglas Adams - "Cookies"slug: douglas-adams-cookiesdate: 2013-07-02 12:22tags: - cookies - off-topic---This post is off-topic, but I just read something amazing and it has made me smile more than anything so far this week. I'd like to share it with any internetters who happen by.
 
 It's an anecdote by Douglas Adams: "Cookies", from his posthumous book "The Salmon of Doubt".
 

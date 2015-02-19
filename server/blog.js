@@ -30,7 +30,8 @@ var updateAsync = function(callback) {
         allFilenames = fs.readdirSync(config.POST_DIR);
 
     allFilenames.forEach(function(element, index, array) {
-        if (element.match(/^([0-9]{4})-([0-9]{2})-([0-9]{2})-([a-z-]+)$/i)) {
+        // Format: YYYY-MM-DD-HH-mm-ss
+        if (element.match(/^([0-9]{4})-([0-9]{2})-([0-9]{2})-([0-9]{2})-([0-9]{2})-([0-9]{2})-([a-z-.]+)$/i)) {
             validFilenames.push(config.POST_DIR + '/' + element);
         }
     });
