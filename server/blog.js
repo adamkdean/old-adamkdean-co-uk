@@ -1,4 +1,4 @@
-var _ = require('underscore'),
+var _ = require('lodash'),
     S = require('string'),
     fs = require('fs'),
     yaml = require('js-yaml'),
@@ -47,11 +47,15 @@ var updateAsync = function(callback) {
         parseRawDataAsync(readResults, function(posts) {
             generateIndexesAsync(posts, function(indexes) {
 
+                // reverse the posts so we get newest first
+                posts = posts.reverse();
+
                 // update the cache object with the new object
                 cachedBlogPosts = {
                     all: posts,
+                    slugIndex: indexes.slugIndex,
                     tagIndex: indexes.tagIndex,
-                    slugIndex: indexes.slugIndex
+                    tagCountArray: indexes.tagCountArray
                 };
 
                 console.log('generated tag index with %d tags', _.size(cachedBlogPosts.tagIndex));
@@ -91,8 +95,10 @@ var parseRawDataAsync = function(data, callback) {
 // " It's true that indices is the plural of index in Latin, but index is an English word when
 //   English speakers use it so we can pluralize it according to the conventions of English. "
 var generateIndexesAsync = function(posts, callback) {
-    var tagIndex = {},
-        slugIndex = {};
+    var slugIndex = {},
+        tagIndex = {},
+        tagCountIndex = {}, // used for tmp storage to make tagCountArray
+        tagCountArray = []; // this is the list we're really interested in
 
     for(let i = 0; i < posts.length; i++) {
         let post = posts[i],
@@ -105,8 +111,15 @@ var generateIndexesAsync = function(posts, callback) {
                 tagExists = tag in tagIndex,
                 postUnique = !_.contains(tagIndex[tag], post);
 
-            if (tagExists && postUnique) tagIndex[tag].push(post);
-            else if (!tagExists) tagIndex[tag] = new Array(post);
+            if (tagExists && postUnique) {
+                tagIndex[tag].push(post);
+                tagCountIndex[tag].count++;
+            } else if (!tagExists) {
+                tagIndex[tag] = new Array(post);
+                tagCountIndex[tag] = {
+                    count: 1
+                };
+            }
         }
 
         // only index this post if the slug is unique and hasn't already been used
@@ -115,9 +128,18 @@ var generateIndexesAsync = function(posts, callback) {
         }
     }
 
+    // move the tags into an array
+    for(var key in tagCountIndex) {
+        tagCountArray.push({
+            name: key,
+            count: tagCountIndex[key].count
+        });
+    }
+
     callback({
+        slugIndex: slugIndex,
         tagIndex: tagIndex,
-        slugIndex: slugIndex
+        tagCountArray: tagCountArray
     });
 };
 
@@ -143,13 +165,15 @@ var getPosts = function(options) {
 };
 
 var getTags = function(options) {
-    // options (object)
-    //   ? suggestion: a search term?
-    //   ? suggestion: skinny, just the keys?
+    var tags = cachedBlogPosts.tagCountArray;
 
-    return Object.keys(cachedBlogPosts.tagIndex);
+    if (options && 'sort' in options) {
+        if (options.sort === 'asc') tags = _.sortBy(cachedBlogPosts.tagCountArray, 'count');
+        else if (options.sort === 'desc') tags = _.sortBy(cachedBlogPosts.tagCountArray, 'count').reverse();
+    }
+
+    return tags;
 };
-
 
 module.exports = exports = {
     startUpdateCycle: startUpdateCycle,

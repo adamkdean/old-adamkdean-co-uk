@@ -7,29 +7,37 @@ blog.startUpdateCycle();
 httpd.init();
 httpd.start();
 
-console.log('**** start ****');
-
 // configure our routes
 httpd.get('/', function *() {
-    var tags = blog.getTags(),
+    var tags = blog.getTags({ sort: 'desc' }),
         posts = blog.getPosts();
+
+    var postsPerPage = (posts.length > config.SITE_POSTS_PER_PAGE)
+        ? config.SITE_POSTS_PER_PAGE
+        : posts.length;
 
     yield this.render('index', {
         tags: tags,
-        posts: posts
+        posts: posts,
+        postsPerPage: postsPerPage
     });
 });
 
 httpd.get('/tag/:tag', function *() {
-    var tags = blog.getTags(),
+    var tags = blog.getTags({ sort: 'desc' }),
         posts = blog.getPosts(),
         taggedPosts = blog.getPosts({ tag: this.params.tag || '' });
+
+    var postsPerPage = (taggedPosts.length > config.SITE_POSTS_PER_PAGE)
+        ? config.SITE_POSTS_PER_PAGE
+        : taggedPosts.length;
 
     if (taggedPosts) {
         yield this.render('tag', {
             tags: tags,
             posts: posts,
-            taggedPosts: taggedPosts
+            taggedPosts: taggedPosts,
+            postsPerPage: postsPerPage
         });
     } else {
         yield this.render('404', {
@@ -40,7 +48,7 @@ httpd.get('/tag/:tag', function *() {
 });
 
 httpd.get('/:slug', function *() {
-    var tags = blog.getTags(),
+    var tags = blog.getTags({ sort: 'desc' }),
         posts = blog.getPosts(),
         post = blog.getPosts({ slug: this.params.slug || '' });
 
@@ -57,25 +65,3 @@ httpd.get('/:slug', function *() {
         });
     }
 });
-
-//
-// httpd.get('/:slug', function *() {
-//     var tags = blog.getTags(),
-//         post = blog.getPosts({ slug: this.params.slug || '' }),
-//         posts = {
-//             all: blog.getPosts()
-//         };
-//
-//     if (post) {
-//         yield this.render('post', {
-//             post: post,
-//             posts: posts,
-//             tags: tags
-//         });
-//     } else {
-//         yield this.render('404', {
-//             type: 'post',
-//             resource: this.params.slug || ''
-//         });
-//     }
-// });

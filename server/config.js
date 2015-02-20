@@ -9,5 +9,6 @@ module.exports = {
     EJS_OPEN_DELIMETER: '{%',
     EJS_CLOSE_DELIMETER: '%}',
 
-    SITE_NAME: 'Adam K Dean'
+    SITE_NAME: 'Adam K Dean',
+    SITE_POSTS_PER_PAGE: 2
 };

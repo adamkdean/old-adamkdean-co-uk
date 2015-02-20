@@ -13,10 +13,16 @@
 
 <aside>
     <h4>Tags</h4>
-    {% if (locals.tags && locals.tags.length > 0) { %}
+    {% if (locals.tags && Object.keys(locals.tags).length > 0) { %}
         <p class="tags">
             {% for(var i = 0; i < tags.length; i++) { %}
-                <a class="tag" href="/tag/{%= tags[i] %}">{%= tags[i] %}</a>
+                {%
+                    var cssClass = '';
+                    if (tags[i].count > 20) cssClass = 'big';
+                    else if (tags[i].count > 10) cssClass = 'medium';
+                    else if (tags[i].count > 1) cssClass = 'small';
+                %}
+                <a class="tag {%= cssClass %}" href="/tag/{%= tags[i].name %}">{%= tags[i].name %}</a>
             {% } %}
         </p>
     {% } else { %}

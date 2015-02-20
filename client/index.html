@@ -1,13 +1,18 @@
 <div class="grid-66">
     {% if (locals.posts && locals.posts.length > 0) { %}
         {% var fullpost = false; %}
-        {% for(var i = 0; i < posts.length; i++) { %}
+        {% for(var i = 0; i < postsPerPage; i++) { %}
             {% var post = posts[i]; %}
             {% include partials/blogpost.html %}
         {% } %}
     {% } else { %}
         {% include partials/noposts.html %}
     {% } %}
+
+    <div class="next-previous">
+        <a href="" class="previous">Previous</a>
+        <a href="" class="next">Next</a>
+    </div>
 </div>
 <div class="grid-33">
     {% include partials/aside.html %}
