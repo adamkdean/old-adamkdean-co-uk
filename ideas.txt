@@ -1,0 +1,9 @@
+Ideas:
+======
+
+- next, previous on blog post listing
+- add in commenting ability (disqus?)
+- show more on tags so it's not right down the page?
+- icon/site title link to home page
+- search ability
+- code highlighting
