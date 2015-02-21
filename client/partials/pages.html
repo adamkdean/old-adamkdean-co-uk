@@ -1,9 +1,4 @@
 <div class="grid-container next-previous">
-    <div class="grid-100">
-
-    </div>
-
-
     <div class="grid-20">
         {% if (pageNumber > 1) { %}
             <a href="{%= params && params.tag && '/tag/' + params.tag || '' %}/page/{%= parseInt(pageNumber)-1 %}" class="previous">
