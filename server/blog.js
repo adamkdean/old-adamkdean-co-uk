@@ -31,8 +31,10 @@ var updateAsync = function(callback) {
 
     allFilenames.forEach(function(element, index, array) {
         // Format: YYYY-MM-DD-HH-mm-ss
-        if (element.match(/^([0-9]{4})-([0-9]{2})-([0-9]{2})-([0-9]{2})-([0-9]{2})-([0-9]{2})-([a-z-.]+)$/i)) {
+        if (element.match(/^([0-9]{4})-([0-9]{2})-([0-9]{2})-([0-9]{2})-([0-9]{2})-([0-9]{2})-([a-z0-9-.]+)$/i)) {
             validFilenames.push(config.POST_DIR + '/' + element);
+        } else {
+            console.log('invalid blog post file name', element);
         }
     });
 

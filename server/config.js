@@ -10,5 +10,5 @@ module.exports = {
     EJS_CLOSE_DELIMETER: '%}',
 
     SITE_NAME: 'Adam K Dean',
-    SITE_POSTS_PER_PAGE: 2
+    SITE_POSTS_PER_PAGE: 5
 };

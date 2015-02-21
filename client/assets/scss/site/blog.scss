@@ -78,3 +78,33 @@ aside {
         font-size: 1.1em;
     }
 }
+
+.next-previous {
+    @include border-radius($borderRadius);
+    border-bottom: $articleBorderWidth solid $articleBorderColor;
+    background: white;
+    padding: .5em .5em;
+    font-size: 0.9em;
+
+    a {
+        &.previous {
+            float: left;
+        }
+        &.next {
+            float: right;
+        }
+    }
+
+    .page-info {
+        text-align: center;
+    }
+
+    &:before, &:after {
+      content:"";
+      display:table;
+    }
+
+    &:after {
+      clear:both;
+    }
+}

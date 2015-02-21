@@ -2396,3 +2396,30 @@ aside ul li {
 .tag.small {
   font-size: 1.1em;
 }
+
+.next-previous {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  border-bottom: 3px solid #e7e7e5;
+  background: white;
+  padding: .5em .5em;
+  font-size: 0.9em;
+}
+.next-previous a.previous {
+  float: left;
+}
+.next-previous a.next {
+  float: right;
+}
+.next-previous .page-info {
+  text-align: center;
+}
+.next-previous:before, .next-previous:after {
+  content: "";
+  display: table;
+}
+.next-previous:after {
+  clear: both;
+}

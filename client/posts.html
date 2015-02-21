@@ -1,13 +1,15 @@
 <div class="grid-66">
-    {% if (locals.taggedPosts) { %}
+    {% if (locals.activePosts && locals.activePosts.length > 0) { %}
         {% var fullpost = false; %}
-        {% for(var i = 0; i < postsPerPage; i++) { %}
-            {% var post = taggedPosts[i]; %}
+        {% for(var i = pageOffset; i < pageOffset+postsPerPage; i++) { %}
+            {% var post = activePosts[i]; %}
             {% include partials/blogpost.html %}
         {% } %}
     {% } else { %}
         {% include partials/noposts.html %}
     {% } %}
+
+    {% include partials/pages.html %}
 </div>
 <div class="grid-33">
     {% include partials/aside.html %}
