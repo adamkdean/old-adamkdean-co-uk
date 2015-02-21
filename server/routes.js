@@ -26,7 +26,7 @@ var self = {
         var tags = blog.getTags({ sort: 'desc' }),
             posts = blog.getPosts(),
             post = blog.getPosts({ slug: this.params.slug || '' });
-            
+
         if (post) {
             yield this.render('slug', {
                 tags: tags,
@@ -50,12 +50,14 @@ var self = {
             pageNumber = params.page || 1,
             maxPages = 1,
             pageOffset  = 0,
-            postsPerPage = config.SITE_POSTS_PER_PAGE;
+            postsPerPage = config.SITE_POSTS_PER_PAGE,
+            title = null;
 
         // make sure we select the correct posts
         if (isTagged) {
             taggedPosts = blog.getPosts({ tag: params.tag || '' });
             activePosts = taggedPosts;
+            title = params.tag || null;
         } else {
             activePosts = posts;
         }
@@ -89,7 +91,8 @@ var self = {
                 pageOffset: pageOffset,
                 pageNumber: pageNumber,
                 maxPages: maxPages,
-                params: params
+                params: params,
+                title: title
             };
         }
     }
