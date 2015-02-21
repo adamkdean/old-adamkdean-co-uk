@@ -1,8 +1,6 @@
 Ideas:
 ======
 
-- next, previous on blog post listing
-- icon/site title link to home page
 - search ability
 - code highlighting
 - show more on tags so it's not right down the page?
