@@ -1,4 +1,4 @@
----title: EasyAuth now available via NuGetslug: easyauth-now-available-via-nugetdate: 2013-03-05 15:51tags:  - easyauth - asp-net-mvc - nuget - c---Now that my new website is live and all working, I've had a bit of time to put [EasyAuth](https://github.com/Imdsm/EasyAuth) on NuGet so everyone/anyone can use it and also so that I can more easily work with projects that do use it (namely this website).
+---title: EasyAuth now available via NuGetslug: easyauth-now-available-via-nugetdate: 2013-03-05 15:51tags: - easyauth - asp-net-mvc - nuget - csharp---Now that my new website is live and all working, I've had a bit of time to put [EasyAuth](https://github.com/Imdsm/EasyAuth) on NuGet so everyone/anyone can use it and also so that I can more easily work with projects that do use it (namely this website).
 
 EasyAuth is a simple, secure, and easy to use lightweight alternative to ASP.NET Membership that I have been working on over the last month or two, and this website actually uses it for the administrative authentication.
 
@@ -26,7 +26,7 @@ The following examples should help you get an idea of how to use EasyAuth. Any q
         {
             // store the instance of the selected UserStore here
             static IUserStore UserStore = EntityUserStore.Instance;
-            
+
             protected void Application_Start()
             {
                 Authentication.UserStore = UserStore;
@@ -34,7 +34,7 @@ The following examples should help you get an idea of how to use EasyAuth. Any q
 
             protected void Application_BeginRequest(Object sender, EventArgs e)
             {
-                // we have to give feed the httpcontext through to the 
+                // we have to give feed the httpcontext through to the
                 // auth class at the beginning of each page request
                 Authentication.HttpContext = HttpContext.Current;
             }
@@ -46,8 +46,8 @@ The following examples should help you get an idea of how to use EasyAuth. Any q
 Make sure you remember to put the ConnectionString in for your selected data storage.
 
     <connectionStrings>
-        <add name="DefaultConnection" 
-            providerName="System.Data.SqlClient" 
+        <add name="DefaultConnection"
+            providerName="System.Data.SqlClient"
             connectionString="Data Source=(LocalDb)\v11.0;Initial Catalog=EasyAuthExample;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\EasyAuthExample.mdf" />
     </connectionStrings>
 
@@ -66,42 +66,42 @@ Authenticate a user with `Authentication.Login(username, password)`, and log the
         {
             //
             // GET: /Home/
-            
+
             [EzAllowAnonymous]
             public ActionResult Index()
-            {            
+            {
                 return View();
             }
 
             //
             // GET: /Home/Login
-            
+
             [EzAllowAnonymous]
             public ActionResult Login()
-            {            
+            {
                 return View();
             }
-            
+
             //
             // POST: /Home/Login
-            
+
             [HttpPost]
             [EzAllowAnonymous]
             public ActionResult Login(LoginModel model)
             {
-                if (ModelState.IsValid && 
+                if (ModelState.IsValid &&
                         Authentication.Login(model.Username, model.Password))
                 {
                     return RedirectToAction("MembersOnly", "Home");
                 }
-            
+
                 ViewBag.Message = "Invalid user credentials";
                 return View(model);
             }
-            
+
             //
             // GET: /Home/Logout
-            
+
             public ActionResult Logout()
             {
                 Authentication.Logout();
@@ -110,7 +110,7 @@ Authenticate a user with `Authentication.Login(username, password)`, and log the
 
             //
             // GET: /Home/MembersOnly
-            
+
             public ActionResult MembersOnly()
             {
                 return View();
@@ -159,7 +159,7 @@ Example:
         DoSomething.With(user.Username);
     }
 
-### Update Users 
+### Update Users
 
 Updating users is really easy too. Make sure you pass the correct userId and User object!
 

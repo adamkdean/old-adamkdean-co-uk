@@ -1,4 +1,4 @@
----title: Simple abstract classes explainedslug: simple-abstract-classes-explaineddate: 2010-09-21 22:39tags:  - abstract - abstract-class - c---Blogular activity has suffered a little here; but setting up a workshop and devising plans to build steam engine in said workshop will do that to you. Today some simple code, written to simplify showing abstract classes. Every tutorial I see they throw in stupid code that isn't really needed to show the primal functionality of abstract classes. So here is an example that has nothing more than what it needs.
+---title: Simple abstract classes explainedslug: simple-abstract-classes-explaineddate: 2010-09-21 22:39tags: - abstract - abstract-class - csharp---Blogular activity has suffered a little here; but setting up a workshop and devising plans to build steam engine in said workshop will do that to you. Today some simple code, written to simplify showing abstract classes. Every tutorial I see they throw in stupid code that isn't really needed to show the primal functionality of abstract classes. So here is an example that has nothing more than what it needs.
 
     class Program
     {
@@ -8,15 +8,15 @@
             // happy is of type happy but also of type mood
             Happy happy = new Happy();
             PrintMoodToScreen(happy);
-     
+
             // again, we create a mood, this one is a sad mood but still
             // a mood nonetheless
             Sad sad = new Sad();
             PrintMoodToScreen(sad);
-     
+
             Console.ReadKey();
         }
-     
+
         // here we take an object of the type Mood, which means we don't require
         // one method for sad, one method for happy and one for all others
         // and it means we dont have to box them into objects either
@@ -33,7 +33,7 @@ As you can see we pass the objects to a single method taking a Mood type, not Sa
         // protected means it's accessible to Mood, and to anything derived
         // from it, i.e. sad, happy, etc
         protected string CurrentMood { get; set; }
-     
+
         // here we write a method to print the mood, we only need to code
         // it once, that's one reason why abstract classes exist
         public void PrintMood()
@@ -41,7 +41,7 @@ As you can see we pass the objects to a single method taking a Mood type, not Sa
             Console.WriteLine(CurrentMood);
         }
     }
-     
+
     // we create the happy class and derive from mood
     class Happy : Mood
     {
@@ -49,10 +49,10 @@ As you can see we pass the objects to a single method taking a Mood type, not Sa
         {
             // we set the protected property, which is accessible to us
             // but not to anyone using a mood object
-            CurrentMood = "Current Mood is Happy :)";        
+            CurrentMood = "Current Mood is Happy :)";
         }
     }
-     
+
     class Sad : Mood
     {
         public Sad()

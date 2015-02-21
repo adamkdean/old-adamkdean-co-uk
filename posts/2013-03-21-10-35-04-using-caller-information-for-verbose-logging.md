@@ -1,4 +1,4 @@
----title: Using caller information for verbose loggingslug: using-caller-information-for-verbose-loggingdate: 2013-03-21 10:35tags:  - c - compilerservices - diagnostics---A cool feature that has been added in Visual Studio 2012 and C# 5.0 is Caller Information attributes. Basically it allows you to see where your method was called from without having to sift through stack traces upon stack traces.
+---title: Using caller information for verbose loggingslug: using-caller-information-for-verbose-loggingdate: 2013-03-21 10:35tags: - csharp - compilerservices - diagnostics---A cool feature that has been added in Visual Studio 2012 and C# 5.0 is Caller Information attributes. Basically it allows you to see where your method was called from without having to sift through stack traces upon stack traces.
 
 You simply prefix an *optional* parameter with one of the three attributes:
 
@@ -8,15 +8,15 @@ You simply prefix an *optional* parameter with one of the three attributes:
 
 Learn by example. Here I've made a simple logging method, we pass to it a string, and the compiler will fill in the rest. Make sure to including `System.Runtime.CompilerServices` in your `using` statements.
 
-    static void VerboseLog(string value, 
+    static void VerboseLog(string value,
         [CallerMemberName] string callerMemberName = "",
         [CallerFilePath] string callerFilePath = "",
         [CallerLineNumber] int callerLineNumber = -1)
     {
         int index = callerFilePath.LastIndexOf(Path.DirectorySeparatorChar);
         string localPath = callerFilePath.Substring(index + 1);
-        Debug.WriteLine("{0} {1}:{2} {3}", 
-            localPath, callerMemberName, callerLineNumber, value);            
+        Debug.WriteLine("{0} {1}:{2} {3}",
+            localPath, callerMemberName, callerLineNumber, value);
     }
 
 Let's test it with a simple Console Application. Notice in the above method that I remove the full path to make it more readable. Not necessarily needed but pleasant nonetheless.

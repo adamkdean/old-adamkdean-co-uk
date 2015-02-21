@@ -1,4 +1,4 @@
----title: Regex split by spaces except inside quote marksslug: regex-split-by-spaces-except-inside-quote-marksdate: 2010-11-09 21:47tags:  - regex - c---Here's a nifty little bit of code I just wrote while writing a console input handler. Sometimes you will want to split up a string by a space, but then how do you input more than one word as a single argument? You put it in quote marks, but then how do you split those separately? Like this:
+---title: Regex split by spaces except inside quote marksslug: regex-split-by-spaces-except-inside-quote-marksdate: 2010-11-09 21:47tags: - regex - csharp---Here's a nifty little bit of code I just wrote while writing a console input handler. Sometimes you will want to split up a string by a space, but then how do you input more than one word as a single argument? You put it in quote marks, but then how do you split those separately? Like this:
 
     MatchCollection matches = Regex.Matches(p, "[^\\s\"']+|\"[^\"]*\"|'[^']*'");
 

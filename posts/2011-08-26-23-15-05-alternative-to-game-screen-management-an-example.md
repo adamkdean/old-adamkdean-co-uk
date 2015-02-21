@@ -1,4 +1,4 @@
----title: Alternative to Game Screen Management - An Exampleslug: alternative-to-game-screen-management-an-exampledate: 2011-08-26 23:15tags:  - gamedev - xna - c---So just to give you an example of how clean you can make your code, let us look at a very simple menu screen, which simply asks for any key to be pressed. As you can see, it's -very- clean.
+---title: Alternative to Game Screen Management - An Exampleslug: alternative-to-game-screen-management-an-exampledate: 2011-08-26 23:15tags: - gamedev - xna - csharp---So just to give you an example of how clean you can make your code, let us look at a very simple menu screen, which simply asks for any key to be pressed. As you can see, it's -very- clean.
 
 I also love #region's as well, best thing since line numbers.
 
@@ -16,74 +16,74 @@ For more information on my game Space Rocks - visit my newly designed (I'm worki
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
     using Microsoft.Xna.Framework.Media;
-     
+
     namespace SpaceRocks
     {
         class MenuScreen : IScreen
         {
             #region Variables
             private VariableService vars;
-             
+
             private SpriteFont font;
             private Texture2D mainBackground;
             #endregion
-     
+
             #region Constructor Methods
             public MenuScreen(Game game)
             {
                 vars = ServiceExtensionMethods
                     .GetService<variableservice>(game.Services);
-                 
+
                 LoadContent();
             }
-     
+
             private void LoadContent()
             {
                 mainBackground = vars.Content.Load<texture2d>("Images/background");
                 font = vars.Content.Load<spritefont>("Fonts/Menu");
             }
             #endregion
-     
+
             #region Update Methods
             public void Update(GameTime gameTime)
             {
                 UpdateInput();
             }
-     
+
             private void UpdateInput()
             {
                 if (Keyboard.GetState().GetPressedKeys().Length > 0)
-                    vars.CurrentScreen = new GameScreen(vars.Game);            
+                    vars.CurrentScreen = new GameScreen(vars.Game);
             }
             #endregion
-     
+
             #region Draw Methods
             public void Draw(GameTime gameTime)
             {
                 vars.GraphicsDevice.Clear(Color.Black);
-     
+
                 vars.SpriteBatch.Begin();
-                 
+
                 DrawBackground();
                 DrawText();
-     
+
                 vars.SpriteBatch.End();
             }
-     
+
             private void DrawBackground()
             {
                 vars.SpriteBatch.Draw(mainBackground, Vector2.Zero, Color.White);
             }
-     
+
             private void DrawText()
             {
                 string text = "Press any key to begin..";
                 Vector2 textSize = font.MeasureString(text);
-     
+
                 int x = vars.GraphicsDevice.Viewport.Width / 2 - (int)textSize.X / 2;
                 int y = vars.GraphicsDevice.Viewport.Height / 2 - (int)textSize.Y / 2;
-     
-                vars.SpriteBatch.DrawString(font, text, 
+
+                vars.SpriteBatch.DrawString(font, text,
                     new Vector2(x, y), Color.White);
             }
             #endregion

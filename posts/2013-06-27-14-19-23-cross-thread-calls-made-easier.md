@@ -1,4 +1,4 @@
----title: Cross thread calls made easierslug: cross-thread-calls-made-easierdate: 2013-06-27 14:19tags:  - winforms - c - thread-safety - delegates - generics - threading---Back in 2010 I wrote a blog post about [cross thread calls](http://www.adamkdean.co.uk/blog/read/2/cross-thread-calls-made-easy), showing how to overcome invalid cross-thread operations and change windows forms from other threads. It was simple but a little bit messy.
+---title: Cross thread calls made easierslug: cross-thread-calls-made-easierdate: 2013-06-27 14:19tags: - winforms - csharp - thread-safety - delegates - generics - threading---Back in 2010 I wrote a blog post about [cross thread calls](http://www.adamkdean.co.uk/blog/read/2/cross-thread-calls-made-easy), showing how to overcome invalid cross-thread operations and change windows forms from other threads. It was simple but a little bit messy.
 
 Well, things are easier now, and have been for a while. Instead of declaring delegates and invoking them, you can now use generic delegates and save yourself the hassle of declaring new delegates for every method signature.
 
@@ -7,9 +7,9 @@ For example, where before you had to do this:
     private delegate void ObjectDelegate(object obj);
 
     private void UpdateTextBox(object obj)
-    {        
+    {
         if (InvokeRequired)
-        {            
+        {
             ObjectDelegate method = new ObjectDelegate(UpdateTextBox);
             Invoke(method, obj);
             return;
@@ -19,9 +19,9 @@ For example, where before you had to do this:
 You can now do this:
 
     private void UpdateTextBox(string s)
-    {        
+    {
         if (InvokeRequired)
-        {                        
+        {
             Action<string> action = new Action<string>(UpdateTextBox);
             Invoke(action, s);
             return;

@@ -1,4 +1,4 @@
----title: Non-blocking Console.ReadKey()slug: non-blocking-console-readkeydate: 2010-12-16 21:50tags:  - c - console-application---Just a quick snippet for today.
+---title: Non-blocking Console.ReadKey()slug: non-blocking-console-readkeydate: 2010-12-16 21:50tags: - csharp - console-application---Just a quick snippet for today.
 
 Have you ever written a quick console app to test something, and wanted it to loop until you press an escape button? But Console.ReadKey() blocks, so you can't really use it...or can you?
 
@@ -8,7 +8,7 @@ Have you ever written a quick console app to test something, and wanted it to lo
         {
             // do work
         }
-     
+
         Console.WriteLine("Press Q to quit or any other key to continue..");
         if (Console.ReadKey().Key == ConsoleKey.Q) break;
     }

@@ -1,4 +1,4 @@
----title: Circle primitive class for XNA/MonoGameslug: circle-primitive-class-for-xna-monogamedate: 2013-03-24 22:08tags:  - c - xna - monogame - gamedev---I've just been playing a little with XNA (or MonoGame as it's called these days) and needed to draw circles. If you've used XNA then you'll know that nothing like that is provided for you. Drawing circles isn't too difficult really, they're basically just lots of little lines at different angles.
+---title: Circle primitive class for XNA/MonoGameslug: circle-primitive-class-for-xna-monogamedate: 2013-03-24 22:08tags: - csharp - xna - monogame - gamedev---I've just been playing a little with XNA (or MonoGame as it's called these days) and needed to draw circles. If you've used XNA then you'll know that nothing like that is provided for you. Drawing circles isn't too difficult really, they're basically just lots of little lines at different angles.
 
 I've come up with the following class. <del>It has a default number of points harcoded but you can overload that, allowing you to create triangles, rectangles, pentagons, hexagons etc.</del>
 
@@ -7,18 +7,18 @@ I've come up with the following class. <del>It has a default number of points ha
 Note, I've adopted my new style of putting fields at the bottom of the class. I like it, you get to the code much quicker.
 
     public class Circle
-    {        
-        public Circle(float x, float y, int radius, 
+    {
+        public Circle(float x, float y, int radius,
             GraphicsDeviceManager graphics)
             : this(x, y, radius, Color.White, graphics) { }
 
-        public Circle(float x, float y, int radius, 
-            Color color, GraphicsDeviceManager graphics)            
+        public Circle(float x, float y, int radius,
+            Color color, GraphicsDeviceManager graphics)
         {
-            this.x = x; 
-            this.y = y; 
-            this.radius = radius; 
-            this.color = color;            
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+            this.color = color;
             this.graphics = graphics;
 
             Initialize();
@@ -29,7 +29,7 @@ Note, I've adopted my new style of putting fields at the bottom of the class. I 
             effect.CurrentTechnique.Passes[0].Apply();
             graphics.GraphicsDevice.DrawUserPrimitives
                 (PrimitiveType.LineStrip, vertices, 0, vertices.Length - 1);
-        }        
+        }
 
         private void Initialize()
         {
@@ -63,7 +63,7 @@ Note, I've adopted my new style of putting fields at the bottom of the class. I 
         }
 
         private int CalculatePointCount()
-        {            
+        {
             return (int)Math.Ceiling(Radius * Math.PI);
         }
 
@@ -75,7 +75,7 @@ Note, I've adopted my new style of putting fields at the bottom of the class. I 
         public float X
         {
             get { return x; }
-            set { x = value; InitializeVertices(); }            
+            set { x = value; InitializeVertices(); }
         }
         private float y;
         public float Y
@@ -98,10 +98,10 @@ Note, I've adopted my new style of putting fields at the bottom of the class. I 
         public int Points
         {
             get { return CalculatePointCount(); }
-        }        
+        }
     }
 
-Using it is *really* easy. Create a `Circle`, and call `circleObject.Draw()`. 
+Using it is *really* easy. Create a `Circle`, and call `circleObject.Draw()`.
 
     Circle circle;
 

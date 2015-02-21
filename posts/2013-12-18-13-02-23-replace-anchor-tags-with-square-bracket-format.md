@@ -1,8 +1,8 @@
----title: Replace anchor tags with square bracket formatslug: replace-anchor-tags-with-square-bracket-formatdate: 2013-12-18 13:02tags:  - regex - c---For reason I won't go into, I have just found myself needing to replace a *lot* of anchor tags with square bracket format anchor tags, like so:
+---title: Replace anchor tags with square bracket formatslug: replace-anchor-tags-with-square-bracket-formatdate: 2013-12-18 13:02tags: - regex - csharp---For reason I won't go into, I have just found myself needing to replace a *lot* of anchor tags with square bracket format anchor tags, like so:
 
     // from
     <a href="#">link</a>
-    
+
     // to
     [a href="#"]link[/a]
 

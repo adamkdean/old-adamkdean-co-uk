@@ -1,4 +1,4 @@
----title: FizzBuzz? More than one line doesn't count!slug: fizzbuzz-more-than-one-line-doesn-t-countdate: 2013-03-21 11:54tags:  - fizzbuzz - c---Just doing *research* over at [r/cscareerquestions](http://www.reddit.com/r/cscareerquestions/) when I stumbled upon [a thread about FizzBuzz](http://www.reddit.com/r/cscareerquestions/comments/1ap4ev/do_people_really_fail_fizzbuzz_during_interviews/). 
+---title: FizzBuzz? More than one line doesn't count!slug: fizzbuzz-more-than-one-line-doesn-t-countdate: 2013-03-21 11:54tags: - fizzbuzz - csharp---Just doing *research* over at [r/cscareerquestions](http://www.reddit.com/r/cscareerquestions/) when I stumbled upon [a thread about FizzBuzz](http://www.reddit.com/r/cscareerquestions/comments/1ap4ev/do_people_really_fail_fizzbuzz_during_interviews/).
 
 I've heard of it, but I've never actually done it. I decided to do it and put myself to the test.
 
@@ -15,7 +15,7 @@ Seems simple enough:
             if (i % 3 == 0 && i % 5 == 0) Debug.WriteLine("FizzBuzz");
             else if (i % 3 == 0) Debug.WriteLine("Fizz");
             else if (i % 5 == 0) Debug.WriteLine("Buzz");
-            else Debug.WriteLine(i);                
+            else Debug.WriteLine(i);
         }
     }
 
@@ -23,7 +23,7 @@ But that's too easy. I'm sure everyone comes up with *that* solution. I'd rather
 
     static void OneLineFizzBuzz()
     {
-        for (int i = 1; i <= 100; i++) Debug.WriteLine((i % 3 == 0 && i % 5 == 0) ? 
+        for (int i = 1; i <= 100; i++) Debug.WriteLine((i % 3 == 0 && i % 5 == 0) ?
             "FizzBuzz" : (i % 3 == 0) ? "Fizz" : (i % 5 == 0) ? "Buzz" : i.ToString());
     }
 

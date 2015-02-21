@@ -1,4 +1,4 @@
----title: Save nanoseconds with a quicker Enum.HasFlag slug: save-nanoseconds-with-a-quicker-enum-hasflagdate: 2013-03-11 15:03tags:  - c - bitwise - enum - performance---One of the easiest ways to manage security flags is to have an Enum and use bitwise comparisons, however you would expect .NET to make things a bit easier for you, afterall who wants to start littering the code with bitwise expressions?
+---title: Save nanoseconds with a quicker Enum.HasFlagslug: save-nanoseconds-with-a-quicker-enum-hasflagdate: 2013-03-11 15:03tags: - csharp - bitwise - enum - performance---One of the easiest ways to manage security flags is to have an Enum and use bitwise comparisons, however you would expect .NET to make things a bit easier for you, afterall who wants to start littering the code with bitwise expressions?
 
 .NET *does* actually make it easier for you, allowing you to check flags with the `Enum.HasFlag` method, but it has type checking and is generally slow. Like running through water slow.
 

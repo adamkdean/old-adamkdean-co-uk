@@ -1,4 +1,4 @@
----title: Readable File Sizesslug: readable-file-sizesdate: 2010-08-29 22:28tags:  - c---In an effort to fill up this blog with code, I will over the next few weeks be looking back over my snippets, finding useful methods and posting them. Today's feature is a simple text formatter, which converts a long (representing bytes) into a string, giving you a nice readable file size.
+---title: Readable File Sizesslug: readable-file-sizesdate: 2010-08-29 22:28tags: - csharp---In an effort to fill up this blog with code, I will over the next few weeks be looking back over my snippets, finding useful methods and posting them. Today's feature is a simple text formatter, which converts a long (representing bytes) into a string, giving you a nice readable file size.
 
 So without further ado:
 
@@ -7,16 +7,16 @@ So without further ado:
         double size = lSize;
         if (size >= 1024 && size < 1048576)
             return string.Format("{0:#,0.00} KB", (size / 1024));
-     
+
         else if (size >= 1048576 && size < 1073741824)
             return string.Format("{0:#,0.00} MB", (size / 1048576));
-     
+
         else if (size >= 1073741824 && size < 1099511627776)
             return string.Format("{0:#,0.00} GB", (size / 1073741824));
-         
+
         else if (size >= 1099511627776)
             return string.Format("{0:#,0.00} TB", (size / 1099511627776));
-     
+
         else return string.Format("{0} B", size);
     }
 

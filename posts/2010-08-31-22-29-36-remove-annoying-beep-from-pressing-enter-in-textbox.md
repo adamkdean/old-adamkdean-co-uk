@@ -1,14 +1,14 @@
----title: Remove annoying beep from pressing enter in textboxslug: remove-annoying-beep-from-pressing-enter-in-textboxdate: 2010-08-31 22:29tags:  - c - winforms---Continuing with useful snippets and methods, today I present you mighty readers with a very useful 
+---title: Remove annoying beep from pressing enter in textboxslug: remove-annoying-beep-from-pressing-enter-in-textboxdate: 2010-08-31 22:29tags: - csharp - winforms---Continuing with useful snippets and methods, today I present you mighty readers with a very useful
 and simple way to get rid of the annoying sound from pressing enter in a textbox. We've all had it, trying to make enter take us from the username, to the password, and then to the submit button.. but that sound.. must..claw..eyes..out... or ears.. but anyway, it's really easy, read and learn:
 
     private void txtInput_KeyUp(object sender, KeyEventArgs e)
     {
         if (e.KeyCode == Keys.Enter)
-        {                
+        {
             e.SuppressKeyPress = true;
         }
     }
-     
+
     private void txtInput_KeyPress(object sender, KeyPressEventArgs e)
     {
         if (e.KeyChar == (char)Keys.Enter)

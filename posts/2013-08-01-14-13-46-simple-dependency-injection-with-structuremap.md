@@ -1,4 +1,4 @@
----title: Simple Dependency Injection with StructureMapslug: simple-dependency-injection-with-structuremapdate: 2013-08-01 14:13tags:  - c - ioc - dependency-injection---Usually when I think of IoC/Dependency Injection for .NET, I think of [Ninject](http://www.ninject.org/), but today I've been looking at an alternative: [StructureMap](http://docs.structuremap.net/index.html). It claims to be the 'oldest IoC/DI tool for .NET development', in development since 2004, and is [available via NuGet](https://www.nuget.org/packages/StructureMap/) including additional versions for both [MVC3](https://www.nuget.org/packages/StructureMap-MVC3/) and [MVC4](https://www.nuget.org/packages/StructureMap.MVC4/).
+---title: Simple Dependency Injection with StructureMapslug: simple-dependency-injection-with-structuremapdate: 2013-08-01 14:13tags: - csharp - ioc - dependency-injection---Usually when I think of IoC/Dependency Injection for .NET, I think of [Ninject](http://www.ninject.org/), but today I've been looking at an alternative: [StructureMap](http://docs.structuremap.net/index.html). It claims to be the 'oldest IoC/DI tool for .NET development', in development since 2004, and is [available via NuGet](https://www.nuget.org/packages/StructureMap/) including additional versions for both [MVC3](https://www.nuget.org/packages/StructureMap-MVC3/) and [MVC4](https://www.nuget.org/packages/StructureMap.MVC4/).
 
 The idea with IoC/DI is that you can easily change dependencies of a class without having to trawl through a load of code and change all the hard-coded references from class X to class Y. Think of magic numbers, well this solves magic dependencies.
 
@@ -43,7 +43,7 @@ And now the ObjectStack class. We could have used generics but let's keep this s
         }
 
         public void Push(object obj)
-        {            
+        {
             object data = _storageProvider.RetrieveData();
             var stack = (data == null) ? new Stack<object>() : (Stack<object>)data;
             stack.Push(obj);
@@ -69,7 +69,7 @@ But then we've hard-coded that dependency, and really we don't want to be doing 
         x.For<IStorageProvider>().Use<ExampleStorageProvider>();
     });
 
-That's it! To get an instance of ObjectClass using this dependency injection, it's as simple as: 
+That's it! To get an instance of ObjectClass using this dependency injection, it's as simple as:
 
     var stack = ObjectFactory.GetInstance<ObjectStack>();
 

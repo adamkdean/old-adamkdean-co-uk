@@ -1,4 +1,4 @@
----title: Quickly and easily upload files with FtpWebRequestslug: quickly-and-easily-upload-files-with-ftpwebrequestdate: 2013-03-08 13:29tags:  - ftp - ftpwebrequest - c---I've just been migrating the *systems* at work to a new host and it's mostly .NET 2.0 stuff, among the lot is some code which uploads images to a server, which for some strange reason has decided to stop working after 3 years and start uploading gobbledygook instead. 
+---title: Quickly and easily upload files with FtpWebRequestslug: quickly-and-easily-upload-files-with-ftpwebrequestdate: 2013-03-08 13:29tags: - ftp - ftpwebrequest - csharp---I've just been migrating the *systems* at work to a new host and it's mostly .NET 2.0 stuff, among the lot is some code which uploads images to a server, which for some strange reason has decided to stop working after 3 years and start uploading gobbledygook instead.
 
 I decided to bypass the old clunky FTP class and just use `FtpWebRequest` instead, and thought I'd post here how easy it is (and for future reference! ha).
 
@@ -12,13 +12,13 @@ There are four input variables here: `requestUriString`, `filePath`, `username`,
 
 The following is an example of how you can quickly and easily upload files using `FtpWebRequest`.
 
-    public static bool UploadExample(string requestUriString, string filePath, 
+    public static bool UploadExample(string requestUriString, string filePath,
         string username, string password)
     {
         bool success = true;
 
         try
-        {                
+        {
             var request = (FtpWebRequest)WebRequest.Create(requestUriString);
             request.Method = WebRequestMethods.Ftp.UploadFile;
             request.Credentials = new NetworkCredential(username, password);
@@ -26,7 +26,7 @@ The following is an example of how you can quickly and easily upload files using
             // we read the bytes directly, not with a StreamReader
             var fileContents = File.ReadAllBytes(filePath);
             request.ContentLength = fileContents.Length;
-                
+
             var requestStream = request.GetRequestStream();
             requestStream.Write(fileContents, 0, fileContents.Length);
             requestStream.Close();
@@ -36,7 +36,7 @@ The following is an example of how you can quickly and easily upload files using
             request.GetResponse();
         }
         catch (WebException)
-        {                
+        {
             success = false;
         }
 
