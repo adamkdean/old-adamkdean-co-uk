@@ -19,6 +19,12 @@
 	<script type="text/javascript" src="/assets/js/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="/assets/js/retina.min.js"></script>
 	<script type="text/javascript" src="/assets/js/search.js"></script>
+    <script type="text/javascript" src="/assets/js/ga.min.js"></script>
+
+    <script type="text/javascript">
+        ga('create', '{%= config.GA_TRACKING_CODE || '' %}', 'auto');
+        ga('send', 'pageview');
+    </script>
 
 	<!--[if lt IE 9]>
 		<script type="text/javascript" src="/assets/js/html5shiv.js"></script>

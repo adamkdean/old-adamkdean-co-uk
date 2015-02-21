@@ -9,6 +9,8 @@ module.exports = {
     EJS_OPEN_DELIMETER: '{%',
     EJS_CLOSE_DELIMETER: '%}',
 
+    GA_TRACKING_CODE: 'UA-8356589-11',
+
     SITE_NAME: 'Adam K Dean',
     SITE_POSTS_PER_PAGE: 5
 };
