@@ -7,8 +7,9 @@ var self = {
     init: function() {
         httpd.get(['/', '/page/:page'], this.indexCtl);
         httpd.get('/tag/:tag', this.tagsCtl);
-        httpd.get('/tag/:tag/page/:page', this.tagsCtl);
+        httpd.get('/tag/:tag/page/:page', this.tagsCtl);       
         httpd.get('/:slug', this.slugCtl);
+        httpd.get('/blog/read/:id/:slug', this.slugCtl);
     },
 
     indexCtl: function *() {
