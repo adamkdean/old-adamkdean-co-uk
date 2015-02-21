@@ -1,8 +1,9 @@
 Ideas:
 ======
 
-- search ability
 - code highlighting
+- search ability
+- responsiveness -- let's make it work
 - show more on tags so it's not right down the page?
 - add in commenting ability (disqus?)
 - drop down nav menu from header border
