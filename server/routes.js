@@ -7,7 +7,7 @@ var self = {
     init: function() {
         httpd.get(['/', '/page/:page'], this.indexCtl);
         httpd.get('/tag/:tag', this.tagsCtl);
-        httpd.get('/tag/:tag/page/:page', this.tagsCtl);       
+        httpd.get('/tag/:tag/page/:page', this.tagsCtl);
         httpd.get('/:slug', this.slugCtl);
         httpd.get('/blog/read/:id/:slug', this.slugCtl);
     },
@@ -26,12 +26,13 @@ var self = {
         var tags = blog.getTags({ sort: 'desc' }),
             posts = blog.getPosts(),
             post = blog.getPosts({ slug: this.params.slug || '' });
-
+            
         if (post) {
             yield this.render('slug', {
                 tags: tags,
                 posts: posts,
-                post: post
+                post: post,
+                title: post.metadata.title
             });
         } else {
             yield this.render('404', {
