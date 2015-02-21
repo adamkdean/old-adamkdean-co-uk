@@ -49,9 +49,6 @@ var updateAsync = function(callback) {
         parseRawDataAsync(readResults, function(posts) {
             generateIndexesAsync(posts, function(indexes) {
 
-                // reverse the posts so we get newest first
-                posts = posts.reverse();
-
                 // update the cache object with the new object
                 cachedBlogPosts = {
                     all: posts,
@@ -101,6 +98,9 @@ var generateIndexesAsync = function(posts, callback) {
         tagIndex = {},
         tagCountIndex = {}, // used for tmp storage to make tagCountArray
         tagCountArray = []; // this is the list we're really interested in
+
+    // reverse the posts so we get newest first
+    posts = posts.reverse();
 
     for(let i = 0; i < posts.length; i++) {
         let post = posts[i],
