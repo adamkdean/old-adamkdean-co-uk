@@ -4,7 +4,10 @@
  */
 
 $(function() {
+
     var $search = $('.search');
+
+    // handle the transitions and transformations etc
     $('.search:not(.active) i').click(function() {
         $search.addClass('active');
         $('.search input').select();
@@ -25,5 +28,14 @@ $(function() {
                  e.stopPropagation();
             });
         }, 50);
+    });
+
+    // handle form submission
+    $('.search input').keypress(function (e) {
+        if (e.which === 13) {
+            $('form#search-form').submit();
+            e.preventDefault();
+            return false;
+        }
     });
 });

@@ -3,6 +3,7 @@ var _ = require('lodash'),
     fs = require('fs'),
     yaml = require('js-yaml'),
     async = require('async'),
+    searchIndex = require('search-index'),
     config = require('./config');
 
 var cachedBlogPosts = {};
@@ -75,16 +76,19 @@ var parseRawDataAsync = function(data, callback) {
     var re = /---[\n\r]+([\s\S]*)[\n\r]+---[\n\r]+([\s\S]*)/,
         posts = [];
 
-    for(let i = 0; i < data.length; i++) {
-        let bits = re.exec(data[i]),
+    for(var i = 0; i < data.length; i++) {
+        var bits = re.exec(data[i]),
             metadata = yaml.safeLoad(bits[1] || ''),
             content = bits[2] || '';
 
-        posts.push({
-            original: data[i],
-            metadata: metadata,
-            content: content
-        });
+        // *** DEBUG REMOVE ***
+        if (i < 5) {
+            posts.push({
+                original: data[i],
+                metadata: metadata,
+                content: content
+            });
+        }
     }
 
     callback(posts);
@@ -97,19 +101,28 @@ var generateIndexesAsync = function(posts, callback) {
     var slugIndex = {},
         tagIndex = {},
         tagCountIndex = {}, // used for tmp storage to make tagCountArray
-        tagCountArray = []; // this is the list we're really interested in
+        tagCountArray = [], // this is the list we're really interested in
+        batch = _.clone(posts, true); // we don't want it messing with our chi
+
+    // initialise the search index
+    searchIndex.empty(function() {
+        console.log('info: emptied search index, adding documents...');
+        searchIndex.add({'batchName': 'blogPosts', 'filters': ['metadata']}, batch, function(err) {
+            if (err) console.error('Error indexing blogPosts');
+        });
+    });
 
     // reverse the posts so we get newest first
     posts = posts.reverse();
 
-    for(let i = 0; i < posts.length; i++) {
-        let post = posts[i],
+    for(var i = 0; i < posts.length; i++) {
+        var post = posts[i],
             meta = post.metadata || {},
             tags = meta.tags || [],
             slug = meta.slug || '';
 
-        for(let j = 0; j < tags.length; j++) {
-            let tag = tags[j],
+        for(var j = 0; j < tags.length; j++) {
+            var tag = tags[j],
                 tagExists = tag in tagIndex,
                 postUnique = !_.contains(tagIndex[tag], post);
 
@@ -145,10 +158,11 @@ var generateIndexesAsync = function(posts, callback) {
     });
 };
 
-var getPosts = function(options) {
+var getPosts = function(options, callback) {
     // options (object):
     //  tag: returns all blog posts that are tagged with said tag
     //  slug: returns single blog posts with this slug
+    //  search: returns search results
 
     if (options && 'tag' in options) {
         return (options.tag in cachedBlogPosts.tagIndex)
@@ -160,6 +174,18 @@ var getPosts = function(options) {
         return (options.slug in cachedBlogPosts.slugIndex)
             ? cachedBlogPosts.slugIndex[options.slug]
             : null;
+    }
+
+    if (options && 'search' in options) {
+        var query = { "query": { "*": [options.search] } };
+
+        searchIndex.search(query, function(err, results) {
+            var posts = [];
+            for(var i = 0; i < data.hits.length; i++) {
+                posts.push(data.hits[i].document);
+            }
+            return posts;
+        });
     }
 
     // default to all blog posts
