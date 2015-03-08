@@ -10,7 +10,7 @@
 
     <p class="metadata">
         {% if (!fullpost) { %}
-        <a href="#todo">No comments</a> |
+        <a href="/{%- post.metadata.slug %}#disqus_thread">No comments</a> |
         {% } %}
 
         <span class="tags">
@@ -27,8 +27,15 @@
     </p>
 
     {% if (fullpost) { %}
-    <p class="comments">
-        Comments go here
-    </p>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'adamkdean';
+        (function () {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     {% } %}
 </article>
