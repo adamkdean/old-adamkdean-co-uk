@@ -8,8 +8,8 @@ var self = {
         httpd.get(['/', '/page/:page'], this.indexCtl);
         httpd.get('/tag/:tag', this.tagsCtl);
         httpd.get('/tag/:tag/page/:page', this.tagsCtl);
+        httpd.get('/blog/read/:id/:slug', this.slugRedirectCtl);
         httpd.get('/:slug', this.slugCtl);
-        httpd.get('/blog/read/:id/:slug', this.slugCtl);
     },
 
     indexCtl: function *() {
@@ -20,6 +20,20 @@ var self = {
     tagsCtl: function *() {
         var locals = self.getLocals(this.params, true);
         yield this.render('posts', locals);
+    },
+
+    slugRedirectCtl: function *() {
+        var post = blog.getPosts({ slug: this.params.slug || '' });
+
+        if (post) {
+            this.status = 301;
+            this.redirect('/' + this.params.slug);
+        } else {
+            yield this.render('404', {
+                type: 'slug',
+                resource: this.params.slug || ''
+            });
+        }
     },
 
     slugCtl: function *() {
