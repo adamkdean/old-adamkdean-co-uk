@@ -16,7 +16,7 @@ var locals = {
 
 var filters = {
     formatDateString: function(dateString) {
-        return moment(dateString).format('dddd, D MMMM YYYY');
+        return moment(new Date(dateString)).format('dddd, D MMMM YYYY');
     },
     formatMarkdown: function(text) {
         return marked(text, { renderer: markedRenderer });
