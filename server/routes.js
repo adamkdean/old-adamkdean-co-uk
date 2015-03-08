@@ -1,6 +1,8 @@
 var blog = require('./blog'),
     httpd = require('./httpd'),
-    config = require('./config');
+    config = require('./config'),
+    suspend = require('suspend'),
+    resume = suspend.resume;
 
 var self = {
 
@@ -8,6 +10,7 @@ var self = {
         httpd.get(['/', '/page/:page'], this.indexCtl);
         httpd.get('/tag/:tag', this.tagsCtl);
         httpd.get('/tag/:tag/page/:page', this.tagsCtl);
+        httpd.get('/search', this.searchCtl);
         httpd.get('/blog/read/:id/:slug', this.slugRedirectCtl);
         httpd.get('/:slug', this.slugCtl);
     },
@@ -20,6 +23,38 @@ var self = {
     tagsCtl: function *() {
         var locals = self.getLocals(this.params, true);
         yield this.render('posts', locals);
+    },
+
+    searchCtl: function *() {
+
+        suspend(function*() {
+            var posts = yield blog.getPosts({ search: this.query.searchTerm || '' }, resume());
+
+            console.log('******** posts:', posts);
+
+            yield this.render('404', {
+                type: 'search',
+                resource: this.query.searchTerm || ''
+            });
+
+        })();
+
+        // var _this = this;
+        // (function() {
+        //     console.log(_this);
+        //     blog.getPosts({ search: _this.query.searchTerm || '' }, function(err, results) {
+        //         console.log('*********************************');
+        //         console.log('results', results);
+        //         console.log('*********************************');
+        //
+        //         //var locals = self.getLocals(_this.params, false);
+        //         //yield _this.render('posts', locals);
+        //     });
+        // })();
+
+        //
+        // var locals = this.getLocals(self.params, false);
+        // yield this.render('posts', locals);
     },
 
     slugRedirectCtl: function *() {

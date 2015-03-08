@@ -1,9 +1,9 @@
 {
   "name": "adamkdean-co-uk",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "server/index.js",
   "scripts": {
-    "start": "node --harmony --use-strict server/index.js"
+    "start": "node --harmony server/index.js"
   },
   "author": "Adam K Dean",
   "license": "MIT",
@@ -17,7 +17,9 @@
     "lodash": "^3.2.0",
     "marked": "^0.3.2",
     "moment": "^2.9.0",
-    "string": "^2.2.0"
+    "search-index": "^0.4.16",
+    "string": "^2.2.0",
+    "suspend": "^0.6.1"
   },
   "engines": {
     "node": ">=0.11.13",
