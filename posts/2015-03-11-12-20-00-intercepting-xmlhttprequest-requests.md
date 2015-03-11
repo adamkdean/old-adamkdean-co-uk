@@ -6,7 +6,7 @@ tags:
  - javascript
 ---
 
-Let's kick off the continuation of my code blogging with a very helpful little snippet. I'm just removing this from a code-base so it can sit here for eternity instead.
+Let's kick off the continuation of my code blogging with a very helpful little snippet. I'm just removing this from a codebase so it can sit here for eternity instead.
 
 
     (function(open) {
