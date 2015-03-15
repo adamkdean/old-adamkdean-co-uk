@@ -1,8 +1,7 @@
-var blog = require('./blog'),
+var _ = require('lodash'),
+    blog = require('./blog'),
     httpd = require('./httpd'),
-    config = require('./config'),
-    suspend = require('suspend'),
-    resume = suspend.resume;
+    config = require('./config');
 
 var self = {
 
@@ -15,46 +14,65 @@ var self = {
         httpd.get('/:slug', this.slugCtl);
     },
 
+    output: function *(context, template, locals) {
+        var defaultLocals = {
+            tags: blog.getTags({ sort: 'desc' }),
+            allPosts: blog.getPosts(),
+            posts: blog.getPosts(),
+            pageNumber: context.params.page || 1,
+            maxPages: 1,
+            pageOffset: 0,
+            postsPerPage: config.SITE_POSTS_PER_PAGE,
+            title: null
+        };
+
+        locals = _.assign(defaultLocals, locals);
+
+        console.log(locals.posts[0]);
+
+        // make sure we don't show too many
+        if (locals.posts.length < locals.postsPerPage) {
+            locals.postsPerPage = locals.posts.length;
+        }
+
+        // make sure we are within our limits
+        locals.maxPages = Math.ceil(locals.posts.length / locals.postsPerPage);
+        if (locals.pageNumber < 1) locals.pageNumber = 1;
+        else if (locals.pageNumber > locals.maxPages) locals.pageNumber = locals.maxPages;
+
+        // make sure we don't show too many on the last page
+        locals.pageOffset = (locals.postsPerPage * (locals.pageNumber - 1));
+        if (locals.pageOffset + locals.postsPerPage > locals.posts.length) {
+            locals.postsPerPage = locals.posts.length - locals.pageOffset;
+        }
+
+        yield context.render(template, locals);
+    },
+
     indexCtl: function *() {
-        var locals = self.getLocals(this.params, false);
-        yield this.render('posts', locals);
+        yield self.output(this, 'posts', {});
     },
 
     tagsCtl: function *() {
-        var locals = self.getLocals(this.params, true);
-        yield this.render('posts', locals);
+        yield self.output(this, 'posts', {
+            posts: blog.getPosts({ tag: this.params.tag || '' }),
+            title: this.params.tag || null
+        });
     },
 
     searchCtl: function *() {
+        var results = yield blog.getPosts({ search: this.query.searchTerm || '' }),
+            posts = [];
 
-        suspend(function*() {
-            var posts = yield blog.getPosts({ search: this.query.searchTerm || '' }, resume());
+        for(var i = 0; i < results.hits.length; i++) {
+            posts.push(results.hits[i].document);
+            posts[i].metadata = posts[i].metadata[0]; // fix searchIndex 'bug'?
+        }
 
-            console.log('******** posts:', posts);
-
-            yield this.render('404', {
-                type: 'search',
-                resource: this.query.searchTerm || ''
-            });
-
-        })();
-
-        // var _this = this;
-        // (function() {
-        //     console.log(_this);
-        //     blog.getPosts({ search: _this.query.searchTerm || '' }, function(err, results) {
-        //         console.log('*********************************');
-        //         console.log('results', results);
-        //         console.log('*********************************');
-        //
-        //         //var locals = self.getLocals(_this.params, false);
-        //         //yield _this.render('posts', locals);
-        //     });
-        // })();
-
-        //
-        // var locals = this.getLocals(self.params, false);
-        // yield this.render('posts', locals);
+        yield self.output(this, 'posts', {
+            posts: posts,
+            title: this.query.searchTerm || null
+        });
     },
 
     slugRedirectCtl: function *() {
@@ -73,13 +91,13 @@ var self = {
 
     slugCtl: function *() {
         var tags = blog.getTags({ sort: 'desc' }),
-            posts = blog.getPosts(),
+            allPosts = blog.getPosts(),
             post = blog.getPosts({ slug: this.params.slug || '' });
 
         if (post) {
             yield this.render('slug', {
                 tags: tags,
-                posts: posts,
+                allPosts: allPosts,
                 post: post,
                 title: post.metadata.title
             });
@@ -88,61 +106,6 @@ var self = {
                 type: 'slug',
                 resource: this.params.slug || ''
             });
-        }
-    },
-
-    getLocals: function(params, isTagged) {
-        var tags = blog.getTags({ sort: 'desc' }),
-            posts = blog.getPosts(),
-            taggedPosts = [],
-            activePosts = [],
-            pageNumber = params.page || 1,
-            maxPages = 1,
-            pageOffset  = 0,
-            postsPerPage = config.SITE_POSTS_PER_PAGE,
-            title = null;
-
-        // make sure we select the correct posts
-        if (isTagged) {
-            taggedPosts = blog.getPosts({ tag: params.tag || '' });
-            activePosts = taggedPosts;
-            title = params.tag || null;
-        } else {
-            activePosts = posts;
-        }
-
-        // make sure we don't show too many
-        if (activePosts.length < postsPerPage) {
-            postsPerPage = activePosts.length;
-        }
-
-        // make sure we are within our limits
-        maxPages = Math.ceil(activePosts.length / postsPerPage);
-        if (pageNumber < 1) pageNumber = 1;
-        else if (pageNumber > maxPages) pageNumber = maxPages;
-
-        // make sure we don't show too many on the last page
-        pageOffset = (postsPerPage * (pageNumber - 1));
-        if (pageOffset + postsPerPage > activePosts.length) {
-            postsPerPage = activePosts.length - pageOffset;
-        }
-
-        // if no tag is found and we're showing tags
-        // then return false so we can 404
-        if (isTagged && !taggedPosts) {
-            return false;
-        } else {
-            return {
-                tags: tags,
-                posts: posts,
-                activePosts: activePosts,
-                postsPerPage: postsPerPage,
-                pageOffset: pageOffset,
-                pageNumber: pageNumber,
-                maxPages: maxPages,
-                params: params,
-                title: title
-            };
         }
     }
 };

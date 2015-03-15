@@ -1,6 +1,6 @@
 {
   "name": "adamkdean-co-uk",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "main": "server/index.js",
   "scripts": {
     "start": "node --harmony server/index.js"
@@ -18,8 +18,7 @@
     "marked": "^0.3.2",
     "moment": "^2.9.0",
     "search-index": "^0.4.16",
-    "string": "^2.2.0",
-    "suspend": "^0.6.1"
+    "string": "^2.2.0"
   },
   "engines": {
     "node": ">=0.11.13",

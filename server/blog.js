@@ -177,15 +177,10 @@ var getPosts = function(options, callback) {
     }
 
     if (options && 'search' in options) {
-        var query = { "query": { "*": [options.search] } };
-
-        searchIndex.search(query, function(err, results) {
-            var posts = [];
-            for(var i = 0; i < data.hits.length; i++) {
-                posts.push(data.hits[i].document);
-            }
-            return posts;
-        });
+        return function(done) {
+            var query = { "query": { "*": [options.search] } };
+            searchIndex.search(query, done);
+        }
     }
 
     // default to all blog posts

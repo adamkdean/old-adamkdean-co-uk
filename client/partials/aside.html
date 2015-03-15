@@ -1,9 +1,9 @@
 <aside>
     <h4>Recent Posts</h4>
     <ul class="recent-posts">
-        {% if (locals.posts && locals.posts.length > 0) { %}
-            {% for(var i = 0; i < (posts.length < 5 ? posts.length : 5); i++) { %}
-                <li>&#187; <a href="/{%- posts[i].metadata.slug %}">{%- posts[i].metadata.title %}</a></li>
+        {% if (locals.allPosts && locals.allPosts.length > 0) { %}
+            {% for(var i = 0; i < (allPosts.length < 5 ? allPosts.length : 5); i++) { %}
+                <li>&#187; <a href="/{%- allPosts[i].metadata.slug %}">{%- allPosts[i].metadata.title %}</a></li>
             {% } %}
         {% } else { %}
             <li>No posts</li>

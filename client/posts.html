@@ -1,8 +1,8 @@
 <div class="grid-66">
-    {% if (locals.activePosts && locals.activePosts.length > 0) { %}
+    {% if (locals.posts && locals.posts.length > 0) { %}
         {% var fullpost = false; %}
         {% for(var i = pageOffset; i < pageOffset+postsPerPage; i++) { %}
-            {% var post = activePosts[i]; %}
+            {% var post = posts[i]; %}
             {% include partials/blogpost.html %}
         {% } %}
     {% } else { %}
