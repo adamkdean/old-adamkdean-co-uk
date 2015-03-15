@@ -19,16 +19,15 @@ var self = {
             tags: blog.getTags({ sort: 'desc' }),
             allPosts: blog.getPosts(),
             posts: blog.getPosts(),
+            postsPerPage: config.SITE_POSTS_PER_PAGE,
             pageNumber: context.params.page || 1,
             maxPages: 1,
             pageOffset: 0,
-            postsPerPage: config.SITE_POSTS_PER_PAGE,
-            title: null
+            title: null,
+            params: context.params
         };
 
         locals = _.assign(defaultLocals, locals);
-
-        console.log(locals.posts[0]);
 
         // make sure we don't show too many
         if (locals.posts.length < locals.postsPerPage) {

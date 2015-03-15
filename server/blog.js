@@ -81,14 +81,11 @@ var parseRawDataAsync = function(data, callback) {
             metadata = yaml.safeLoad(bits[1] || ''),
             content = bits[2] || '';
 
-        // *** DEBUG REMOVE ***
-        if (i < 5) {
-            posts.push({
-                original: data[i],
-                metadata: metadata,
-                content: content
-            });
-        }
+        posts.push({
+            original: data[i],
+            metadata: metadata,
+            content: content
+        });
     }
 
     callback(posts);
