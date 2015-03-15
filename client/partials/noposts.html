@@ -1,5 +1,14 @@
 <article>
-    <h2>Blog is empty</h2>
-    <p>No posts found. Maybe there has been a technical hitch?</p>
-    <p>Please check back in an hour or so!</p>
+    {% if(locals.params && locals.params.tag) { %}
+        <h2>Tag does not exist</h2>
+        <p>No blog posts found for tag {%= locals.params.tag %}.</p>
+    {% } else if(locals.query && locals.query.searchTerm) { %}
+        <h2>No posts found</h2>
+        <p>No posts found for search term {%= locals.query.searchTerm %}.</p>
+        <p>It may be that the search indexes aren't fuzzy enough.</p>
+    {% } else { %}
+        <h2>Blog is empty</h2>
+        <p>No posts found. Maybe there has been a technical hitch?</p>
+        <p>Please check back in an hour or so!</p>
+    {% } %}
 </article>

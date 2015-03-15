@@ -24,10 +24,15 @@ var self = {
             maxPages: 1,
             pageOffset: 0,
             title: null,
-            params: context.params
+            params: context.params,
+            query: context.query
         };
 
         locals = _.assign(defaultLocals, locals);
+
+        if (locals.posts == null) {
+            locals.posts = [];
+        }
 
         // make sure we don't show too many
         if (locals.posts.length < locals.postsPerPage) {

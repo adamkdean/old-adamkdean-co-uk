@@ -5,11 +5,12 @@
             {% var post = posts[i]; %}
             {% include partials/blogpost.html %}
         {% } %}
+        {% if (posts.length > postsPerPage) { %}
+            {% include partials/pages.html %}
+        {% } %}
     {% } else { %}
         {% include partials/noposts.html %}
     {% } %}
-
-    {% include partials/pages.html %}
 </div>
 <div class="grid-33">
     {% include partials/aside.html %}
