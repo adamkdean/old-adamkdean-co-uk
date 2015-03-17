@@ -2,6 +2,8 @@ var koa = require('koa'),
     Router = require('koa-router'),
     serve = require('koa-static'),
     ejs = require('koa-ejs'),
+    compress = require('koa-compress'),
+    minifier = require('koa-html-minifier'),
     path = require('path'),
     url = require('url'),
     moment = require('moment'),
@@ -42,6 +44,17 @@ var init = function() {
     app.use(responseTimeFn);
     app.use(loggerFn);
     app.use(extendLocalsFn);
+    app.use(compress());
+    app.use(minifier({
+        removeComments: true,
+        collapseWhitespace: true,
+        useShortDoctype: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        removeIgnored: true,
+        minifyJS: true,
+        minifyCSS: true
+    }));
     app.use(router.middleware());
     app.use(serve(renderViewModel.root));
     ejs(app, renderViewModel);
