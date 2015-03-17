@@ -14,6 +14,8 @@ module.exports = {
     HEROKU_API_TOKEN: process.env.HEROKU_API_TOKEN || null,
     HEROKU_APP_NAME: 'adamkdean-co-uk',
 
+    GITHUB_REPO_URL: 'http://github.com/adamkdean/adamkdean-co-uk',
+
     SITE_NAME: 'Adam K Dean',
     SITE_POSTS_PER_PAGE: 5
 };

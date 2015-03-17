@@ -32,7 +32,18 @@ var self = {
     },
 
     getReleaseString: function() {
-        return "v" + self.versionNo + ' (' + self.version.description + ')';
+        if (typeof self.version.description !== 'undefined') {
+            if (_.startsWith(self.version.description, 'Deploy')) {
+                var sha = self.version.description.split(' ')[1],
+                    commitUri = config.GITHUB_REPO_URL + '/commit/' + sha,
+                    commitLink = '<a href="' + commitUri + '">' + sha + '</a>';
+                return "v" + self.versionNo + ' (' + commitLink + ')';
+            } else {
+                return 'v' + self.versionNo + ' (' + self.version.description + ')';
+            }
+        } else {
+            return '';
+        }
     }
 
 };
