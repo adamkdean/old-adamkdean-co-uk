@@ -11,6 +11,9 @@ module.exports = {
 
     GA_TRACKING_CODE: 'UA-8356589-11',
 
+    HEROKU_API_TOKEN: process.env.HEROKU_API_TOKEN || null,
+    HEROKU_APP_NAME: 'adamkdean-co-uk',
+
     SITE_NAME: 'Adam K Dean',
     SITE_POSTS_PER_PAGE: 5
 };
