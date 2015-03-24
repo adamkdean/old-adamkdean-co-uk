@@ -25,4 +25,18 @@ With ES6 generators, where you want to `yield sleep(1000)` etc, you can't use ca
 
     yield sleep(1000);
     
+This is now available on npmjs.org. To install:
+
+    npm install es6-sleep
+
+To use, let's say while inside some Koa middleware:
+
+    var sleep = require('es6-sleep');
+
+    app.use(function *() {
+        // do something
+        yield sleep(1000);
+        // continue
+    });
+
 Hopefully that makes sense. It does in my head.
