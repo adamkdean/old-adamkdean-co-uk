@@ -1,6 +1,6 @@
 ---
 title: Shell settings for safer scripts
-slug: 2015-04-05-09-51-00-shell-settings-for-safer-scripts
+slug: shell-settings-for-safer-scripts
 date: 2015-04-05 9:51
 tags:
  - shell
