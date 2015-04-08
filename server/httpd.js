@@ -8,6 +8,7 @@ var koa = require('koa'),
     url = require('url'),
     moment = require('moment'),
     marked = require('marked'),
+    highlightjs = require('highlight.js'),
     config = require('./config');
 
 var app, router, renderViewModel, markedRenderer;
@@ -26,7 +27,12 @@ var filters = {
 };
 
 var init = function() {
-    // setup the model before it's used
+    initRenderViewModel();
+    initKoa();
+    initMarked();
+};
+
+var initRenderViewModel = function() {
     renderViewModel = {
         root: path.join(__dirname, '..', config.SITE_DIR),
         layout: 'layout',
@@ -38,7 +44,9 @@ var init = function() {
         open: config.EJS_OPEN_DELIMETER || '{{',
         close: config.EJS_CLOSE_DELIMETER || '}}'
     };
+};
 
+var initKoa = function() {
     app = koa();
     router = new Router();
     app.use(responseTimeFn);
@@ -58,19 +66,28 @@ var init = function() {
     app.use(router.middleware());
     app.use(serve(renderViewModel.root));
     ejs(app, renderViewModel);
+};
 
+var initMarked = function() {
     markedRenderer = new marked.Renderer();
-    markedRenderer.heading = function (text, level) {
-        // the idea here is that we don't want to be throwing out
-        // h1's like it's a street carnival, so we knock them all
-        // down a couple o' pegs, so offset of 3 means h4 and down
-        // also, stop at h6 because h7 isn't real, ok?
-        var headerLevelOffset = 2,
-            headerLevel = (headerLevelOffset + level < 7) ? headerLevelOffset + level : 6,
-            tagOpen = '<h' + headerLevel + '>',
-            tagClose = '</h' + headerLevel + '>';
-        return tagOpen + text + tagClose;
-    };
+    markedRenderer.code = renderCode;
+    markedRenderer.heading = renderHeading;
+}
+
+var renderCode = function (code, language) {
+    return '<pre><code class="hljs">' + highlightjs.highlightAuto(code).value + '</code></pre>';
+};
+
+var renderHeading = function (text, level) {
+    // the idea here is that we don't want to be throwing out
+    // h1's like it's a street carnival, so we knock them all
+    // down a couple o' pegs, so offset of 3 means h4 and down
+    // also, stop at h6 because h7 isn't real, ok?
+    var headerLevelOffset = 2,
+        headerLevel = (headerLevelOffset + level < 7) ? headerLevelOffset + level : 6,
+        tagOpen = '<h' + headerLevel + '>',
+        tagClose = '</h' + headerLevel + '>';
+    return tagOpen + text + tagClose;
 };
 
 var start = function(port) {
