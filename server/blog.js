@@ -102,8 +102,6 @@ var generateIndexesAsync = function(posts, callback) {
         batch = _.clone(posts, true); // we don't want it messing with our chi
 
     // initialise the search index
-    console.log(searchIndex.empty);
-
     searchIndex.empty(function() {
         console.log('info: emptied search index, adding documents...');
         searchIndex.add({'batchName': 'blogPosts', 'filters': ['metadata']}, batch, function(err) {
