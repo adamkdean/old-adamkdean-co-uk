@@ -21,7 +21,7 @@
     "lodash": "^3.2.0",
     "marked": "^0.3.2",
     "moment": "^2.9.0",
-    "search-index": "0.4.16",
+    "search-index": "^0.4.17",
     "string": "^2.2.0"
   },
   "engines": {
