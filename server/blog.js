@@ -3,7 +3,7 @@ var _ = require('lodash'),
     fs = require('fs'),
     yaml = require('js-yaml'),
     async = require('async'),
-    searchIndex = require('search-index'),
+    searchIndex = require('search-index')(),
     config = require('./config');
 
 var cachedBlogPosts = {};
