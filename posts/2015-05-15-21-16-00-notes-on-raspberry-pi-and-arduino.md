@@ -9,7 +9,7 @@ tags:
  - node.js
 ---
 
-Using NOOBS, install Raspian. It's probably the most supported distro for the Pi. (https://www.raspberrypi.org/help/noobs-setup/)
+Using NOOBS, install Raspbian. It's probably the most supported distro for the Pi. (https://www.raspberrypi.org/help/noobs-setup/)
 
 Setup the Raspberry Pi to connect automatically to WiFi. I've used a TP-Link TL-WN321G without any issues. (http://weworkweplay.com/play/automatically-connect-a-raspberry-pi-to-a-wifi-network/)
 
