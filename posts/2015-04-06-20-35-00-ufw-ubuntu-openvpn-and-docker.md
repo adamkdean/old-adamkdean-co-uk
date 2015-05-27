@@ -33,7 +33,7 @@ For UFW, I had to add a few rules. I added in ports 22 (SSH) and 1194/udp (VPN).
 
     sudo ufw allow 22
     sudo ufw allow 1194/udp
-    sudo ufw allow allow in on docker0 to any
+    sudo ufw allow in on docker0 to any
     sudo ufw enable
     
 Next, I started some containers, and tried to access them. No access... turned on the VPN, tried again, and bingo. I had access. It took a while to get there but I got there. Secured access to my containers.
