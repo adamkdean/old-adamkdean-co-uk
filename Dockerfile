@@ -12,5 +12,4 @@ RUN npm install
 ENV PORT 8000
 EXPOSE 8000
 
-# Go!
-CMD "node --harmony server/index.js"
+CMD ["npm", "start"]
