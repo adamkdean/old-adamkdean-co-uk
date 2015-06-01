@@ -1,4 +1,4 @@
-FROM adamkdean/nodejs
+FROM adamkdean/node
 MAINTAINER Adam K Dean
 
 # Add source files
