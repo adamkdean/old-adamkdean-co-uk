@@ -8,9 +8,7 @@ ARRAY=(1 2 3)
 NAME=adamkdean-co-uk
 
 # build it if we don't already have it
-if [ $(docker images | grep ${NAME} | wc -l) -eq 0 ]; then
-    docker build -t $NAME .
-fi
+docker build -t $NAME .
 
 # swarm before
 docker -H $DOCKER_HOST info
