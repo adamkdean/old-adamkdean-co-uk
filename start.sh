@@ -13,7 +13,7 @@ if [ $(docker images | grep ${NAME} | wc -l) -eq 0 ]; then
 fi
 
 # test, make sure we're talking to swarm
-docker info
+docker -H $DOCKER_HOST info
 
 for i in "${ARRAY[@]}"
 do
