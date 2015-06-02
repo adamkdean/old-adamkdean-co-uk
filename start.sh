@@ -12,15 +12,19 @@ if [ $(docker images | grep ${NAME} | wc -l) -eq 0 ]; then
     docker build -t $NAME .
 fi
 
-# test, make sure we're talking to swarm
+# swarm before
 docker -H $DOCKER_HOST info
 
 for i in "${ARRAY[@]}"
 do
     echo "Running ${NAME}_${i}"
-    # docker run -d \
-    #     -p $PRIVATE_IPV4:0:8000 \
-    #     --name ${NAME}_${i} \
-    #     --restart=always \
-    #     $NAME
+    docker -H $DOCKER_HOST run -d \
+        -p $PRIVATE_IPV4:0:8000 \
+        --name ${NAME}_${i} \
+        --restart=always \
+        $NAME
 done
+
+# swarm after
+docker -H $DOCKER_HOST info
+docker ps | grep $NAME
