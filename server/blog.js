@@ -22,7 +22,8 @@ var stopUpdateCycle = function() {
 
 var updateCycle = function() {
     updateAsync(function() {
-        updateObject = setTimeout(updateCycle, updateInterval);
+        // No need to loop, removed this
+        // updateObject = setTimeout(updateCycle, updateInterval);
     });
 };
 
