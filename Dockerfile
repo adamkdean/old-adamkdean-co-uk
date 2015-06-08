@@ -1,12 +1,10 @@
 FROM adamkdean/node
-MAINTAINER Adam K Dean
+MAINTAINER Adam K Dean <adamkdean@googlemail.com>
 
-# Add source files
 RUN mkdir /var/adamkdean-co-uk
 ADD . /var/adamkdean-co-uk
 WORKDIR /var/adamkdean-co-uk
 
-# Install dependencies
 RUN npm install
 
 ENV PORT 8000
