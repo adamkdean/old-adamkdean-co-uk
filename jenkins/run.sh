@@ -23,9 +23,10 @@ while [ $i -lt $SCALE ]; do
 
     echo "[info] Running ${NAME}_${i}..."
     docker -H $SWARM run -d -P \
+        -e DEBUG_TIMESTAMP="$(date +'%T')" \
         --name ${NAME}_${i} \
         --restart=always \
-        $REGISTRY/$NAME
+        $REGISTRY/$NAME:latest
 
     echo " ----------------------------------------------------------------"
 

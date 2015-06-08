@@ -27,7 +27,7 @@ var self = {
             title: null,
             params: context.params,
             query: context.query,
-            version: heroku.getReleaseString()
+            version: process.env.DEBUG_TIMESTAMP || 'null'
         };
 
         locals = _.assign(defaultLocals, locals);
@@ -117,7 +117,7 @@ var self = {
             });
         }
     }
-    
+
 };
 
 module.exports = exports = self;
