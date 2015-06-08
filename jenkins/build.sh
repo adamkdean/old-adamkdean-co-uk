@@ -8,4 +8,5 @@ NAME="adamkdean-co-uk"
 
 docker build -t $NAME .
 docker tag "$NAME:latest" "$REGISTRY/$NAME:latest"
+docker rmi $NAME
 docker push "$REGISTRY/$NAME:latest"
