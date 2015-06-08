@@ -6,9 +6,6 @@
 REGISTRY="registry.cloudkeeper.io"
 NAME="adamkdean-co-uk"
 
-echo "PWD $(pwd)"
-echo "ls -al posts/:"
-ls -al posts/
-
-docker build -t "$REGISTRY/$NAME" .
+docker build -t $NAME .
+docker tag "$NAME:latest" "$REGISTRY/$NAME:latest"
 docker push "$REGISTRY/$NAME:latest"
