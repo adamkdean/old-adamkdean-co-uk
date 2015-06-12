@@ -26,8 +26,7 @@ var self = {
             pageOffset: 0,
             title: null,
             params: context.params,
-            query: context.query,
-            version: 'no-version-yet'
+            query: context.query
         };
 
         locals = _.assign(defaultLocals, locals);
