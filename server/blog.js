@@ -183,8 +183,7 @@ var getTags = function(options) {
 };
 
 module.exports = exports = {
-    startUpdateCycle: startUpdateCycle,
-    stopUpdateCycle: stopUpdateCycle,
+    init: init,
     updateAsync: updateAsync,
     getPosts: getPosts,
     getTags: getTags
