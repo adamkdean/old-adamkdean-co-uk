@@ -15,14 +15,12 @@ echo " ----------------------------------------------------------------"
 i="0"
 while [ $i -lt $SCALE ]; do
 
-    echo "[info] Killing ${NAME}_${i}..."
+    echo "[info] Pulling $REGISTRY/$NAME:latest..."
+    docker pull $REGISTRY/$NAME:latest
+
+    echo "[info] Killing & removing ${NAME}_${i}..."
     docker -H $SWARM kill ${NAME}_${i}
-
-    echo "[info] Removing ${NAME}_${i}..."
     docker -H $SWARM rm ${NAME}_${i}
-
-    echo "[info] Removing image $REGISTRY/$NAME:latest..."
-    docker rmi $REGISTRY/$NAME:latest
 
     echo "[info] Running ${NAME}_${i}..."
     docker -H $SWARM run -d -P \
