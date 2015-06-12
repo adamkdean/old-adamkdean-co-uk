@@ -27,7 +27,7 @@ var self = {
             title: null,
             params: context.params,
             query: context.query,
-            version: process.env.DEBUG_TIMESTAMP || 'null'
+            version: 'no-version-yet'
         };
 
         locals = _.assign(defaultLocals, locals);
