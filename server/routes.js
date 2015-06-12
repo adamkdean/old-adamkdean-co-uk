@@ -1,7 +1,6 @@
 var _ = require('lodash'),
     blog = require('./blog'),
     httpd = require('./httpd'),
-    heroku = require('./heroku'),
     config = require('./config');
 
 var self = {
@@ -89,8 +88,7 @@ var self = {
         } else {
             yield this.render('404', {
                 type: 'slug',
-                resource: this.params.slug || '',
-                version: heroku.getReleaseString()
+                resource: this.params.slug || ''
             });
         }
     },
@@ -105,14 +103,12 @@ var self = {
                 tags: tags,
                 allPosts: allPosts,
                 post: post,
-                title: post.metadata.title,
-                version: heroku.getReleaseString()
+                title: post.metadata.title
             });
         } else {
             yield this.render('404', {
                 type: 'slug',
-                resource: this.params.slug || '',
-                version: heroku.getReleaseString()
+                resource: this.params.slug || ''
             });
         }
     }

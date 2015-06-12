@@ -4,26 +4,12 @@ var _ = require('lodash'),
     yaml = require('js-yaml'),
     async = require('async'),
     searchIndex = require('search-index')(),
-    config = require('./config');
+    config = require('./config'),
+    cachedBlogPosts = {};
 
-var cachedBlogPosts = {};
-
-var updateInterval = config.CACHE_UPDATE_INTERVAL,
-    updateObject;
-
-var startUpdateCycle = function(interval) {
-    updateInterval = interval || updateInterval;
-    updateCycle();
-};
-
-var stopUpdateCycle = function() {
-    clearTimeout(updateObject);
-};
-
-var updateCycle = function() {
+var init = function() {
     updateAsync(function() {
-        // No need to loop, removed this
-        // updateObject = setTimeout(updateCycle, updateInterval);
+        console.log('Blog cache updated');
     });
 };
 

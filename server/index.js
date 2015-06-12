@@ -4,7 +4,7 @@ var blog = require('./blog'),
     routes = require('./routes');
 
 // initialise various things
-blog.startUpdateCycle();
+blog.init();
 heroku.init();
 httpd.init();
 httpd.start();
