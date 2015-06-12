@@ -10,8 +10,9 @@ FULLNAME="$REGISTRY/$NAME:latest"
 SCALE=1
 
 HOSTS=$(docker run --rm swarm list consul://swarm.cloudkeeper.io:8500/swarm)
-while [ $h -lt $HOSTS ]; do
-    docker -H $h pull registry.cloudkeeper.io/adamkdean-co-uk:latest 
+for host in $HOSTS do
+    echo "Host is ${host}"
+    # docker -H $h pull registry.cloudkeeper.io/adamkdean-co-uk:latest
 done
 
 

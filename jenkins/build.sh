@@ -6,7 +6,7 @@
 REGISTRY="registry.cloudkeeper.io"
 NAME="adamkdean-co-uk"
 
-docker build -t $NAME .
-docker tag -f "$NAME:latest" "$REGISTRY/$NAME:latest"
-docker rmi $NAME
-docker push "$REGISTRY/$NAME:latest"
+# docker build -t $NAME .
+# docker tag -f "$NAME:latest" "$REGISTRY/$NAME:latest"
+# docker rmi $NAME
+# docker push "$REGISTRY/$NAME:latest"
