@@ -21,6 +21,9 @@ while [ $i -lt $SCALE ]; do
     echo "[info] Removing ${NAME}_${i}..."
     docker -H $SWARM rm ${NAME}_${i}
 
+    echo "[info] Removing image $REGISTRY/$NAME:latest..."
+    docker rmi $REGISTRY/$NAME:latest
+
     echo "[info] Running ${NAME}_${i}..."
     docker -H $SWARM run -d -P \
         -e DEBUG_TIMESTAMP="$(date +'%T')" \
