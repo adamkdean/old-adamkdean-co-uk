@@ -9,8 +9,16 @@ NAME="adamkdean-co-uk"
 FULLNAME="$REGISTRY/$NAME:latest"
 SCALE=1
 
-docker pull $FULLNAME
-docker run -d -P --name $NAME_0 $FULLNAME
+HOSTS=$(docker run --rm swarm list consul://swarm.cloudkeeper.io:8500/swarm)
+while [ $h -lt $HOSTS ]; do
+    docker -H $h pull registry.cloudkeeper.io/adamkdean-co-uk:latest 
+done
+
+
+# docker pull registry.cloudkeeper.io/adamkdean-co-uk:latest
+# docker kill adamkdean-co-uk_0
+# docker rm adamkdean-co-uk_0
+# docker run -d -P --name adamkdean-co-uk_0 registry.cloudkeeper.io/adamkdean-co-uk:latest
 
 # echo "[notice] For now, we'll just take down the old containers and start the new ones"
 # echo "[notice] Eventually we should make sure the new ones are up before killing the others"
