@@ -16,7 +16,7 @@ SCALE=1
 
 # Step 2. Get all Swarm nodes to pull new image
 HOSTS=$(docker run --rm swarm list ${DISCOVERY})
-for host in $HOSTS do
+for host in $HOSTS; do
     echo "docker -H $h pull $REGISTRY/$NAME:latest"
     docker -H $h pull "$REGISTRY/$NAME:latest"
 done
