@@ -2,27 +2,27 @@
 #
 # Jenkins build script
 
-
-
 DISCOVERY="consul://swarm.cloudkeeper.io:8500/swarm"
 SWARM="tcp://swarm.cloudkeeper.io:12375"
 REGISTRY="registry.cloudkeeper.io"
 NAME="adamkdean-co-uk"
+BRANCH=$(echo $GIT_BRANCH | cut -d "/" -f 2)
+IMAGE="$NAME-$BRANCH"
 SCALE=1
 
 # Step 1. Build
 echo "[info] Building & pushing new image..."
-docker build -t "build_$NAME" .
-docker tag -f "build_$NAME:latest" "$REGISTRY/$NAME:latest"
-docker rmi "build_$NAME"
-docker push "$REGISTRY/$NAME:latest"
+docker build -t "build_$IMAGE" .
+docker tag -f "build_$IMAGE:latest" "$REGISTRY/$IMAGE:latest"
+docker rmi "build_$IMAGE"
+docker push "$REGISTRY/$IMAGE:latest"
 
 # Step 2. Get all Swarm nodes to pull new image
 echo "[info] Co-ordinating image update on Swarm nodes..."
 HOSTS=$(docker run --rm swarm list $DISCOVERY)
 for host in $HOSTS; do
-    echo "[info] Updating $REGISTRY/$NAME:latest on $host..."
-    docker -H $host pull "$REGISTRY/$NAME:latest"
+    echo "[info] Updating $REGISTRY/$IMAGE:latest on $host..."
+    docker -H $host pull "$REGISTRY/$IMAGE:latest"
 done
 
 # Step 3. Run the containers
@@ -40,7 +40,7 @@ while [ $i -lt $SCALE ]; do
     docker -H $SWARM run -d -P \
         --name ${NAME}_${i} \
         --restart=always \
-        $REGISTRY/$NAME:latest
+        $REGISTRY/$IMAGE:latest
 
     i=$[$i+1]
 done
