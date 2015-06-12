@@ -6,7 +6,11 @@
 SWARM="tcp://swarm.cloudkeeper.io:12375"
 REGISTRY="registry.cloudkeeper.io"
 NAME="adamkdean-co-uk"
+FULLNAME="$REGISTRY/$NAME:latest"
 SCALE=1
+
+docker pull $FULLNAME
+docker run -d -P --name $NAME_0 $FULLNAME
 
 # echo "[notice] For now, we'll just take down the old containers and start the new ones"
 # echo "[notice] Eventually we should make sure the new ones are up before killing the others"
