@@ -5,9 +5,9 @@
 DISCOVERY="consul://swarm.cloudkeeper.io:8500/swarm"
 SWARM="tcp://swarm.cloudkeeper.io:12375"
 REGISTRY="registry.cloudkeeper.io"
-NAME="adamkdean-co-uk"
+PROJECT="adamkdean-co-uk"
 BRANCH=$(echo $GIT_BRANCH | cut -d "/" -f 2)
-IMAGE="$NAME-$BRANCH"
+IMAGE="$PROJECT-$BRANCH"
 SCALE=1
 
 # Step 1. Build
@@ -32,13 +32,13 @@ echo "[notice] Eventually we should make sure the new ones are up before killing
 i="0"
 while [ $i -lt $SCALE ]; do
 
-    echo "[info] Killing & removing ${NAME}_${i}..."
-    docker -H $SWARM kill ${NAME}_${i}
-    docker -H $SWARM rm ${NAME}_${i}
+    echo "[info] Killing & removing ${IMAGE}_${i}..."
+    docker -H $SWARM kill ${IMAGE}_${i}
+    docker -H $SWARM rm ${IMAGE}_${i}
 
-    echo "[info] Running ${NAME}_${i}..."
+    echo "[info] Running ${IMAGE}_${i}..."
     docker -H $SWARM run -d -P \
-        --name ${NAME}_${i} \
+        --name ${IMAGE}_${i} \
         --restart=always \
         $REGISTRY/$IMAGE:latest
 
