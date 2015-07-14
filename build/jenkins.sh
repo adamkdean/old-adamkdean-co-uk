@@ -12,7 +12,7 @@ if [ $OUT -eq 0 ]; then
     docker run -d \
         --restart=always \
         --name $IMAGE \
-        -p 8015:80 \
+        -p $HTTP_PORT:80 \
         $IMAGE
 else
     exit $OUT
