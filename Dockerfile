@@ -7,7 +7,7 @@ WORKDIR /var/adamkdean-co-uk
 
 RUN npm install
 
-ENV PORT 8000
-EXPOSE 8000
+ENV PORT 80
+EXPOSE 80
 
 CMD ["npm", "start"]

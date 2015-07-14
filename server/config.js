@@ -1,6 +1,6 @@
 module.exports = {
     /* you probably don't want to change this */
-    PORT: process.env.PORT || 8000,
+    PORT: process.env.PORT || 80,
     SITE_DIR: process.env.SITE_DIR || 'client',
     POST_DIR: process.env.POST_DIR || 'posts',
     LOGGING: process.env.LOGGING || 2, // 0 none, 1 standard, 2 debug
