@@ -38,13 +38,11 @@ Example if your client files are in the parent directory, and index.js is in ser
     app.use(serve('assets', path.join(__dirname, '..', 'client'));
     app.listen(8000);
 
-## Get it
+## Install it
 
-Install it with npm like so:
-
-    npm i koa-serve
+    npm install koa-serve
     
 ## More links
 
-https://github.com/adamkdean/koa-serve
-https://www.npmjs.com/package/koa-serve
+GitHub: https://github.com/adamkdean/koa-serve  
+NPM: https://www.npmjs.com/package/koa-serve
