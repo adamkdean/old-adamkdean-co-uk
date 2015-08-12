@@ -17,6 +17,6 @@ Also available to you:
     fs.lstatSync(path_string).isDirectory()
     fs.lstatSync(path_string).isBlockDevice()
     fs.lstatSync(path_string).isCharacterDevice()
-    fs.lstatSync(path_string).isSymbolicLink() (only valid with fs.lstat())
+    fs.lstatSync(path_string).isSymbolicLink()
     fs.lstatSync(path_string).isFIFO()
     fs.lstatSync(path_string).isSocket()
