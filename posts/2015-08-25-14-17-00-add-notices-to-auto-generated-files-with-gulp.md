@@ -51,6 +51,15 @@ Or you can provide your own string as the first parameter:
 
     /* this file was auto-generated */
 
+## Working wth streams
+
+If you're working with streams (e.g. vinyl-source-stream) then gulp-streamify will help you. Let's say you're using browserify with vinyl-source-stream, you can wrap gulp-notice with streamify and it'll work:
+
+    return b.bundle()
+        .pipe(source(entry))
+        .pipe(streamify(notice()))
+        .pipe(gulp.dest('./public/js'));
+
 ## Install it
 
     npm install gulp-notice
