@@ -57,5 +57,5 @@ Or you can provide your own string as the first parameter:
     
 ## More links
 
-GitHub: https://github.com/adamkdean/gulp-notice
+GitHub: https://github.com/adamkdean/gulp-notice  
 NPM: https://www.npmjs.com/package/gulp-notice
