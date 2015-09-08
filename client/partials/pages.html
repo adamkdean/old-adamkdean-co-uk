@@ -1,5 +1,5 @@
 <div class="grid-container next-previous">
-    <div class="grid-20">
+    <div class="grid-20 mobile-grid-20">
         {% if (pageNumber > 1) { %}
             <a href="{%= params && params.tag && '/tag/' + params.tag || '' %}/page/{%= parseInt(pageNumber)-1 %}" class="previous">
                 &laquo; Previous
@@ -8,10 +8,10 @@
             &nbsp;
         {% } %}
     </div>
-    <div class="grid-60 page-info">
+    <div class="grid-60 mobile-grid-60 page-info">
         Showing posts {%= pageOffset+1 %}-{%= pageOffset+postsPerPage %} of {%= posts.length %}
     </div>
-    <div class="grid-20">
+    <div class="grid-20 mobile-grid-20">
         {% if (pageNumber < maxPages) { %}
             <a href="{%= params && params.tag && '/tag/' + params.tag || '' %}/page/{%= parseInt(pageNumber)+1 %}" class="next">
                 Next &raquo;

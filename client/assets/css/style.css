@@ -57,6 +57,10 @@
     display: none !important;
   }
 
+  .center-on-mobile {
+    text-align: center !important;
+  }
+
   .mobile-grid-5 {
     float: left;
     width: 5%;
