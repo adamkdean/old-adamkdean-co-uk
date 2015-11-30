@@ -11,6 +11,6 @@ If you're using Ubuntu with Xrdp, and you find the keyboard to be infuriatingly 
 
 Now, finally, to make these settings apply to Xrdp, run the following command:
 
-    $ sudo xrdp-genkeymap /etc/xrdp/km-0409.ini
+    sudo xrdp-genkeymap /etc/xrdp/km-0409.ini
     
 Logout, log back in with Xrdp and it should now work.
