@@ -1,1 +1,3 @@
-"This will be a simple blog." - Me, before starting project
+This is my personal website, [adamkdean.co.uk](http://www.adamkdean.co.uk). 
+
+I am going to rewrite it at some point.
