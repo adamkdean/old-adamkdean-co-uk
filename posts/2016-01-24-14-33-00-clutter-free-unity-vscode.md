@@ -31,7 +31,7 @@ Well, hopefully I'll be posting some interesting posts this year. I'll be using 
 
 Here is to a great 2016, and here is your complete `settings.json` file:
 
-{
+    {
         "files.exclude":
         {
             "**/.DS_Store":true,
