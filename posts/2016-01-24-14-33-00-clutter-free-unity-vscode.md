@@ -39,6 +39,8 @@ This results in lower blood pressure:
 
 ![Lower blood pressure with Unity + VSCode](https://i.imgur.com/0Dtf4ep.png)
 
+**Update** I've realised just now (25/01/16 14:39) that the VSCode plugin actually has an option to do this for you, in the preferences, "Write Workspace Settings". I guess it didn't jump out at me at the time but this also works.  
+
 Well, hopefully I'll be posting some interesting posts this year. I'll be using C# for game dev, ES6 at work, and with a baby on the way, there will be lots of non-computer related discoveries too I'm sure.
 
 Here is to a great 2016.
