@@ -1,7 +1,7 @@
 ---
 title: List all files changed in last commit
 slug: list-all-files-changed-in-last-commit
-date: 2016-02-08 10:51
+date: 2016-02-08 10:53
 tags: 
  - git
  - snippet
