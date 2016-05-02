@@ -30,7 +30,6 @@ This is from a kata I recently completed at [codewars](http://www.codewars.com/k
       
       // step 2. iterate over the input string, three chars at a time
       for (let i = 0; i < plaintext.length; i += 3) {
-        
         // step 3. take three 8-bit (ASCII) chars, and store
         //         them as one single 24-bit number
         //
