@@ -10,7 +10,7 @@ tags:
  - strings
 ---
 
-This is part 2 of a series on base64 encoding/decoding, based on a kata I recently completed at [codewars](http://www.codewars.com/kata/base64-encoding/javascript). I've used base64 a lot but never have I delved into it enough to understand exactly what goes on. So I took the time to explain via inline comments. I hope you enjoy reading it as much as I enjoyed writing it. [Part 1 - base64 encode explained](#).
+This is part 2 of a series on base64 encoding/decoding, based on a kata I recently completed at [codewars](http://www.codewars.com/kata/base64-encoding/javascript). I've used base64 a lot but never have I delved into it enough to understand exactly what goes on. So I took the time to explain via inline comments. I hope you enjoy reading it as much as I enjoyed writing it. [Part 1 - base64 encode explained](http://www.adamkdean.co.uk/base64-encode-explained).
 
     String.prototype.fromBase64 = function () {
       const base64chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef' +
