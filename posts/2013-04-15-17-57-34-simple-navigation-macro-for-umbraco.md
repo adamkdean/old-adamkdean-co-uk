@@ -27,4 +27,4 @@ This snippet is probably common knowledge for a lot of Umbraco developers, but f
 		}
 	</ul>
 
-No nesting support but easily addable. _Link broken, remove 27/06/16 -- thanks Tim Jackson._
+No nesting support but easily addable. _Link broken, removed 27/06/16 -- thanks Tim Jackson._
