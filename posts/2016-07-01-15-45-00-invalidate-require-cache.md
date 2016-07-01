@@ -41,6 +41,6 @@ The following example will show this working:
     
 Output:
 
-  adam@macbook:test $ node index.js
-  Generated on Fri Jul 01 2016 15:49:11 GMT+0100 (BST) with: first
-  Generated on Fri Jul 01 2016 15:49:13 GMT+0100 (BST) with: 2 seconds later
+  adam@macbook:test $ node index.js  
+  Generated on Fri Jul 01 2016 15:49:11 GMT+0100 (BST) with: first  
+  Generated on Fri Jul 01 2016 15:49:13 GMT+0100 (BST) with: 2 seconds later  
